@@ -1,2 +1,1 @@
-# group-project
-Final Group Project in Introduction to Web Programming
+A full functional workspace web app for the owners to list their properties and Co-workers to rent it. 
