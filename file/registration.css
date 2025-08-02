@@ -1,0 +1,117 @@
+/* Global */
+body {
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Register Container */
+.register-container {
+  padding: 2rem 2.5rem;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Labels */
+.register-container label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.9rem;
+}
+
+/* Role */
+.role-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#owner,
+#co-worker {
+  margin-left: 0.5rem;
+}
+
+/* Input Rows Fields*/
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 0.5rem);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #d6d4d4;
+}
+
+/* Form Options (Terms) */
+.form-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.form-options a {
+  color: #000;
+  text-decoration: none;
+}
+
+.form-options a:hover {
+  text-decoration: underline;
+}
+
+/* Register Button */
+.register-btn {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  padding: 0.75rem;
+  border: none;
+  background: #d6d4d4;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-btn:hover {
+  background: #7c7f83;
+}
+
+/* Login Redirect */
+.login-redirect {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-redirect a {
+  color: #000;
+  text-decoration: none;
+}
+
+.login-redirect a:hover {
+  text-decoration: underline;
+}
