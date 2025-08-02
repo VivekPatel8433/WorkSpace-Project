@@ -1,16 +1,58 @@
-<!--User login-->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../file/login.css" />
+  </head>
+  <body>
+    <!-- Login Container-->
+    <div class="login-container">
+      <h2>Login</h2>
+      <form>
+        <label for="email"><strong>Email Address</strong></label>
+        <input type="email" name="email" id="email" />
 
-    <script src="main.js"></script>
-</body>
+        <label for="password"><strong>Password</strong></label>
+        <input type="password" name="password" id="password" />
+
+        <!-- Form Options -->
+        <div class="form-options">
+          <label for="">
+            <input type="checkbox" name="checkbox" id="checkbox" />
+            Remember Me
+          </label>
+          <!-- Need a link here -->
+          <a href="#"><strong>Forgot Password?</strong></a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-btn"><strong>Login</strong></button>
+
+        <!-- Other Login Options -->
+        <div class="other-options">
+          <p><strong>Other options</strong></p>
+          <div class="social-butttons">
+            <a href="#" class="social-btn github">
+              <img src="../img/github.svg" alt="Github logo" />
+            </a>
+            <a href="#" class="social-btn facebook">
+              <img src="../img/facebook.svg" alt="Facebook Logo" />
+            </a>
+            <a href="#" class="social-btn google">
+              <img src="../img/google.svg" alt="Google Logo" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Signup -->
+        <p class="signup">
+          <!-- Need a link here -->
+          Don't have an account?
+          <a href="../Frontend/registration.html"><strong>Sign Up</strong></a>
+        </p>
+      </form>
+    </div>
+  </body>
 </html>
