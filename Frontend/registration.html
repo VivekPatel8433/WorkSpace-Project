@@ -1,16 +1,83 @@
-<!--User Registration-->
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="../file/registration.css" />
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Create an Account</h2>
 
-    <script src="main.js"></script>
-</body>
+      <form>
+        <!-- Role-->
+        <div class="role-select">
+          <label>Role:</label>
+          <input type="radio" name="role" id="owner" required /> Owner
+          <input type="radio" name="role" id="co-worker" /> Co-worker
+        </div>
+
+        <!-- First Name and Last Name-->
+        <div class="input-row">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" id="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" id="lastName" required />
+          </div>
+        </div>
+
+        <!-- Phone Number and Email-->
+        <div class="input-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required />
+          </div>
+        </div>
+
+        <!-- Password and Confirm Password-->
+        <div class="input-row">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="form-options">
+          <label>
+            <input type="checkbox" name="terms" id="terms" required />
+            I Agree to the <a href="#"><strong>Terms of Service</strong></a>
+          </label>
+        </div>
+
+        <!-- Register Button -->
+        <button type="submit" class="register-btn">
+          <strong>Create Account</strong>
+        </button>
+
+        <!-- Login Redirect -->
+        <p class="login-redirect">
+          Already have an account?
+          <a href="../Frontend/login.html"><strong>Login</strong></a>
+        </p>
+      </form>
+    </div>
+  </body>
 </html>
