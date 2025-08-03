@@ -25,89 +25,34 @@
 </head>
 <body class="min-h-screen bg-gray">
 
-      <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <span class="text-3xl font-bold text-[#C97C5D] hover:text-red-500">WorkSpace</span>
-                </div>
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-blue-600 transition-colors">Features & Benefits</a>
-                    <a href="#how-it-works" class="text-gray-700 hover:text-blue-600 transition-colors">How It Works</a>
-                    <a href="#benefits" class="text-gray-700 hover:text-blue-600 transition-colors">Book A Space</a>
-                </nav>
-                <div class="flex items-center space-x-4">
-                    <button id="signInButton" class="text-gray-800 hover:text-[#FF8E72] transition-colors">Sign In</button>
-                    <button id="getStartedButton" class="bg-[#05F140] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                        Register
-                    </button>
-                </div>
-            </div>
+    <!--Headers-->
+    <div id="header"></div>
+    
+    <main class="bg-white text-gray-800"></main>
+
+    <!--Hero Section-->
+    <section class="max-w-7xl mx-auto px-4 py-20 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-5">Find Your Perfect Workspace</h1>
+        <p class="text-lg md:text-xl text-gray-800 mb-7">
+           Discover, book, and manage flexible workspaces tailored to your business needs. 
+        </p>
+        <a href="login.html" class="bg-[#C97C5D] text-white px-6 py-3 rounded-lg hover:bg-[#b8664b] transition">Book a Space</a>
+    </section>
+    
+    <!--Features Section-->
+    <section class="bg-gray-100 py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-10 text-center">Features & Benefits</h2>
+        <div class="grid gap-8 md:grid-cols-3">
+
         </div>
-    </header>
-    <section>
-        <div class="py-10"></div>
+    </div>
     </section>
 
 
     <!--Footers-->
+    <div id="footer"></div>
 
-    <footer class="bg-gray-700 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center mb-4">
-                        <span class="text-2xl font-bold">WorkSpace</span>
-                    </div>
-                    <div>
-                        <p class="text-green-400 mb-4 max-w-md">
-                        Connecting Co-workers With Shared Workspaces. Find The Perfect Office Space, 
-                        Meeting Room And Grow Your Business.       
-                        </p>
-                    </div>
-        
-            </div>
-                <p class="text-red-300">
-                    Perfect WorkSpace Do Exist
-                <br>
-                <button id="getStartedButton" class="bg-gray-700 text-white px-2 py-1.5 rounded-lg hover:bg-blue-700 transition-colors">
-                       Get Started
-                </button>
-                </p>
-            </div>
-            
-        <div class="flex space-x-16">
-            <div>
-                <ul class="space-y-2 text-gray-400 py-10">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">How It Works</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-                </ul>
-            </div>
-            
-            <div>
-                <ul class="space-y-2 text-gray-400 py-10">
-                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Cookies Policy</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-
-            <div class="border-t mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-            © 2025 WorkSpace Connect. All rights reserved. | Built for workspaces
-                </p>
-            </div>
-
-        </div>
-    </footer>
-
-
-
-    
+    <script src="homepage.js"></script>
 </body>
 </html>
