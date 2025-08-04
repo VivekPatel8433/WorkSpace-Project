@@ -9,7 +9,76 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+     <!-- Top Header -->
+<header class="top-bar">
+
+  <!-- Logo SVG + Title -->
+  <div class="logo-brand">
+    <div class="logo-svg">
+      <svg width="70" height="40" viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#000">W</text>
+        <text x="36" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="normal" fill="#000">_</text>
+      </svg>
+    </div>
+    <h1 class="brand-name">Work_Spaces</h1>
+  </div>
+  
+
+    <!-- Navigation -->
+    <nav class="top-nav">
+      <a href="#">browse spaces</a>
+      <a href="#">post a space</a>
+      <a href="#">dashboard</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="logout-btn">Log out</button>
+      <span class="help-icon">?</span>
+      <div class="tooltip-text">Need help? Visit our support page.</div>
+    </div>
+  </header>
+
+  <!-- Dashboard Layout -->
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button>Overview</button>
+      <button class="active">Properties</button>
+      <button>Booking Request</button>
+      <button>Reviews & Rating</button>
+      <button>Account Settings</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      <h2>Main Content Area</h2>
+
+      <section class="overview-stats">
+        <h3>Overview Stats</h3>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <p>Total Properties: <strong>3</strong></p>
+          </div>
+          <div class="stat-card">
+            <p>Active Workspaces: <strong>2</strong></p>
+          </div>
+          <div class="stat-card">
+            <p>Pending Request: <strong>1</strong></p>
+          </div>
+          <div class="stat-card">
+            <p>Average Rating: <strong>4.7 ⭐</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-blocks">
+        <div class="block"></div>
+        <div class="block"></div>
+      </section>
+    </main>
+  </div>
 
     <script src="main.js"></script>
 </body>
