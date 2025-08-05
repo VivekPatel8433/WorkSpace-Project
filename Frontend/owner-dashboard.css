@@ -1,1 +1,247 @@
+/* Reset and global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.top-bar {
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Logo SVG */
+.logo-svg {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-svg svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Navigation */
+.top-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  text-transform: lowercase;
+  transition: color 0.2s ease-in-out;
+}
+
+.top-nav a:hover {
+  color: #3388ff;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  background-color: white;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.help-icon {
+  font-size: 20px;
+  background: #eee;
+  border-radius: 50%;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+/* Dashboard Layout */
+.dashboard-layout {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar button {
+  background: none;
+  border: 1px solid transparent;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar button:hover {
+  background-color: #ddd;
+}
+
+.sidebar button:focus {
+  outline: 2px solid #3388ff;
+  background-color: #e6f0ff;
+}
+
+.sidebar .active {
+  border: 2px solid #3388ff;
+  background-color: white;
+}
+
+/* Main Dashboard Content */
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.dashboard-content h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.overview-stats h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.stat-grid {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1 1 200px;
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card p {
+  font-size: 16px;
+}
+
+/* Placeholder Content Blocks */
+.content-blocks {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.block {
+  flex: 1 1 200px;
+  background-color: #eee;
+  height: 120px;
+  border-radius: 6px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .sidebar button {
+    flex: 1 1 45%;
+    margin-bottom: 10px;
+  }
+
+  .content-blocks {
+    flex-direction: column;
+  }
+}
+
+/* Optional: Branding name beside SVG */
+.logo-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  max-width: 200px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 6px 10px;
+  border-radius: 4px;
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease;
+  font-size: 14px;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
 
