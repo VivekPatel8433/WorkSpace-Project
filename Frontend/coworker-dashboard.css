@@ -1,1 +1,362 @@
+/* Reset and global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.top-bar {
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  gap:20px;
+}
+
+/* Logo SVG */
+.logo-svg {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-svg svg {
+  width: 100%;
+  height: auto;
+}
+
+.logo-brand {
+  display: flex;            
+  align-items: center;      
+  gap: 5px;                
+}
+
+.brand-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+ 
+}
+/* Navigation */
+.top-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  
+}
+
+.top-nav a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  text-transform: lowercase;
+  transition: color 0.2s ease-in-out;
+}
+
+.top-nav a:hover {
+  color: #3388ff;
+}
+
+.logout,
+.help {
+  padding: 6px 12px;
+  background-color: white;
+  border: 1px solid #000;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.logout:hover,
+.help:hover {
+  background-color: #e0e0e0;
+}
+
+.help {
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Help Tooltip / Overlay */
+.help-overlay {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #999;
+  border-radius: 8px;
+  padding: 16px;
+  width: 260px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: none;
+  z-index: 999;
+}
+
+.help-overlay.active {
+  display: block;
+}
+
+/* Dashboard Layout */
+.dashboard {
+  display: flex;
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar button {
+  background: none;
+  border: 1px solid transparent;
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar button:hover {
+  background-color: #ddd;
+}
+
+.sidebar button:focus {
+  border: 2px solid #3388ff;
+  background-color: white;
+}
+.sidebar .active {
+  border: 2px solid #3388ff;
+  background-color: white;
+}
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.main-content h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #222;
+}
+
+/* Welcome Panel */
+.welcome-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.box {
+  flex: 1 1 200px;
+  background-color: #eee;
+  height: 100px;
+  border-radius: 6px;
+}
+
+/* Smart Search */
+.smart-search input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.filters button {
+  padding: 6px 12px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filters button:hover {
+  background-color: #bbb;
+}
+
+.smart-search select {
+  padding: 6px;
+  margin-left: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Workspace Listings */
+.workspace-card {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #eee;
+  border-radius: 8px;
+}
+
+.workspace-card .img {
+  width: 150px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 6px;
+}
+
+.workspace-card .info {
+  flex: 1;
+}
+
+.workspace-card h3 {
+  margin-bottom: 6px;
+}
+
+.workspace-card .actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.workspace-card .actions button {
+  padding: 6px 12px;
+  background-color: #3388ff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.workspace-card .actions button:hover {
+  background-color: #1f6fe2;
+}
+
+/* Bookings */
+.booking-card {
+  background-color: #eee;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.booking-card h3 {
+  margin-bottom: 6px;
+}
+
+.booking-card .actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.booking-card .actions button {
+  padding: 6px 12px;
+  background-color: #ff9933;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.booking-card .actions button:hover {
+  background-color: #e67e22;
+}
+
+/* Reviews */
+.review {
+  background-color: #eee;
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .sidebar button {
+    flex: 1 1 45%;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+}
+
+.smart-search {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+}
+
+.smart-search h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.smart-search label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+.smart-search {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;  
+ 
+}
