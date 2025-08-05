@@ -7,11 +7,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Co-Worker Dahsboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="coworker-dashboard.css">
 </head>
 <body>
-    
+    <header>
+    <div class="top-bar">
+      
+      <!-- Logo SVG + Title -->
+  <div class="logo-brand">
+    <div class="logo-svg">
+      <svg width="70" height="40" viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#000">W</text>
+        <text x="36" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="normal" fill="#000">_</text>
+      </svg>
+    </div>
+    <h1 class="brand-name">Work_Spaces</h1>
+  </div>
+     
+      <nav class="top-nav">
+        <a href="#">browse spaces</a>
+        <a href="#">messages</a>
+        <a href="#">dashboard</a>
+        
+      </nav>
+      <div class="top-bar-right">
+        <button class="logout">Log out</button>
+        <button class="help">?</button>
+           </div>
+    </div>
+  </header>
 
-    <script src="main.js"></script>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <button class="nav-link active">Search Spaces</button>
+      <button class="nav-link">Saved Spaces</button>
+      <button class="nav-link">Bookings</button>
+      <button class="nav-link">Reviews & Rating</button>
+      <button class="nav-link">Account Settings</button>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <section class="welcome-panel">
+        <h2>Welcome Panel</h2>
+        <!-- Welcome boxes (use 3-4 placeholders) -->
+        <div class="welcome-boxes">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+      </section>
+
+      <section class="smart-search">
+        <h2>Smart Search</h2>
+        <input type="text" placeholder="Search workspaces..." />
+        <div class="filters">
+          <button>WiFi</button>
+          <button>Parking</button>
+          <button>Meeting Room</button>
+          <button>24/7</button>
+        </div>
+        <label>Sort by:
+          <select>
+            <option>Rating</option>
+            <option>Price</option>
+            <option>Distance</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="workspace-listings">
+        <h2>Workspace Listings</h2>
+        <div class="workspace-card">
+          <div class="img"></div>
+          <div class="info">
+            <h3>Space Name</h3>
+            <p>Description...</p>
+            <div class="actions">
+              <button>Details</button>
+              <button>Contact</button>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat cards -->
+      </section>
+
+      <section class="bookings-history">
+        <h2>Bookings & History Panel</h2>
+        <div class="booking-card">
+          <h3>Booked Space</h3>
+          <p>Date: 01/08/2025</p>
+          <div class="actions">
+            <button>Cancel</button>
+            <button>Reschedule</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="my-reviews">
+        <h2>My Reviews</h2>
+        <div class="review">
+          <p>★★★★☆</p>
+          <p>"Great space and fast internet!"</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+    <script src="coworker-dashboard.js"></script>
 </body>
 </html>
