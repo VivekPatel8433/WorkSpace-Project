@@ -1,16 +1,70 @@
-<!--User Registration-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Propery</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="searchproperties.css" />
+  <title>Workspace Search</title>
 </head>
 <body>
-    
 
-    <script src="main.js"></script>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="logo">
+      <div class="circle-logo">WS_</div>
+      <h1>Work_Spaces</h1>
+    </div>
+    <nav class="main-nav">
+      <a href="#">Share Your Space</a>
+      <a href="#">Book a Space</a>
+      <a href="#">Log In</a>
+      <a href="#" title="Help"><span class="help-icon">?</span></a>
+    </nav>
+  </header>
+
+ 
+
+  <!-- FLOATING SEARCH CONTROLS -->
+  <div class="floating-search">
+    <div class="search-controls">
+      <select id="location">
+        <option value="">All Locations</option>
+        <option value="Calgary">Calgary</option>
+        <option value="Toronto">Toronto</option>
+      </select>
+
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search by name or keyword" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+     <!-- Dynamic Buttons -->
+  <div class="search_button"></div>
+  
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <aside class="filters-column">
+      <div class="filters">
+        <h2>Filters</h2>
+        <div class="filter-option"><label><input type="checkbox" name="wifi" /> WiFi</label></div>
+        <div class="filter-option"><label><input type="checkbox" name="parking" /> Parking</label></div>
+        <div class="filter-option"><label><input type="checkbox" name="kitchen" /> Kitchen</label></div>
+        <div class="filter-option"><label><input type="checkbox" name="meeting" /> Meeting Room</label></div>
+      </div>
+    </aside>
+
+    <section class="search-results" id="results">
+      <!-- Workspace Cards go here -->
+    </section>
+  </main>
+
+  <section id="map" style="height: 400px; width: 100%; margin-top: 20px;"></section>
+
+  <footer>
+    <p>&copy; Workspace Finder 2025</p>
+  </footer>
+
+  <script src="searchproperties.js"></script>
 </body>
 </html>
