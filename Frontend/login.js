@@ -50,9 +50,9 @@ document.querySelector("form").addEventListener("submit", async function (e) {
       // Check if role matches the selected role
       if (data.role === selectedRole) {
         if (data.role === "owner") {
-          window.location.href = "/owner-dashboard.html";
+          window.location.href = "http://localhost:3001/owner-dashboard.html";
         } else if (data.role === "co-worker") {
-          window.location.href = "/coworker-dashboard.html";
+          window.location.href = "http://localhost:3001/coworker-dashboard.html";
         }
       } else {
         alert("Role does not match the registered role for this user.");

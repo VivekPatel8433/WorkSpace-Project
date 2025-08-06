@@ -13,6 +13,7 @@ app.use(express.json());
 
 const loginFilePath = path.join(__dirname, 'data', 'login.json');
 
+
 const publicPath = path.join(__dirname, '..', 'Frontend');
 app.use(express.static(publicPath));
 
