@@ -40,9 +40,9 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     if (response.ok) {
       // Redirect based on user role
       if (data.role === "owner") {
-        window.location.href = "../Frontend/owner-dashboard.html";
+        window.location.href = "/owner-dashboard.html";
       } else if (data.role === "co-worker") {
-        window.location.href = "../Frontend/coworker-dashboard.html";
+        window.location.href = "/coworker.html";
       } else {
         alert("Unknown role");
       }
