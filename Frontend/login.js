@@ -77,4 +77,4 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   } catch (err) {
     alert("Server error. Please try again later.");
   }
-});
+  
