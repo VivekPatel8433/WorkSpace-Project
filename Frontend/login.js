@@ -19,35 +19,46 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
+  
+  // Get role from radio buttons
+  const roleRadios = document.getElementsByName("role");
+  let selectedRole = null;
+  for (const radio of roleRadios) {
+    if (radio.checked) {
+      selectedRole = radio.id;  
+      break;
+    }
+  }
 
-  if (!email || !password) {
-    alert("Please enter both email and password");
+  if (!email || !password || !selectedRole) {
+    alert("Please enter email, password, and select a role.");
     return;
   }
 
   try {
-   const response = await fetch("http://localhost:3001/login", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({ email, password }),
-});
-
+    const response = await fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
     const data = await response.json();
 
     if (response.ok) {
-      // Redirect based on user role
-      if (data.role === "owner") {
-        window.location.href = "http://localhost:3001/owner-dashboard.html";
-      } else if (data.role === "co-worker") {
-        window.location.href = "/coworker.html";
+      // Check if role matches the selected role
+      if (data.role === selectedRole) {
+        if (data.role === "owner") {
+          window.location.href = "/owner-dashboard.html";
+        } else if (data.role === "co-worker") {
+          window.location.href = "/coworker-dashboard.html";
+        }
       } else {
-        alert("Unknown role");
+        alert("Role does not match the registered role for this user.");
       }
     } else {
-      alert(data.message || "Login failed");
+      alert(data.message || "Invalid credentials");
     }
   } catch (err) {
     alert("Server error. Please try again later.");

@@ -1,3 +1,4 @@
+
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
@@ -9,10 +10,14 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+
 const loginFilePath = path.join(__dirname, 'data', 'login.json');
 
 const publicPath = path.join(__dirname, '..', 'Frontend');
 app.use(express.static(publicPath));
+
+app.use("/file", express.static(path.join(__dirname, "..", "file")));
+
 
 // Login Route
 app.post('/login', (req,res) => { 
