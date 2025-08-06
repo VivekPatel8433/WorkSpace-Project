@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "email": "Hello@gmail.com",
+    "password": "123",
+    "role": "owner",
+    "firstName": "Hello123",
+    "lastName": "World",
+    "phoneNumber": "1234567890"
+  }
+]

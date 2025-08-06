@@ -26,7 +26,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   }
 
   try {
-   const response = await fetch("http//localhost:3001/login", {
+   const response = await fetch("http://localhost:3001/login", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -40,7 +40,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     if (response.ok) {
       // Redirect based on user role
       if (data.role === "owner") {
-        window.location.href = "/owner-dashboard.html";
+        window.location.href = "http://localhost:3001/owner-dashboard.html";
       } else if (data.role === "co-worker") {
         window.location.href = "/coworker.html";
       } else {
