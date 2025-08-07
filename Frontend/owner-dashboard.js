@@ -29,31 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add workspace
-  document.getElementById("workspace-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
+document.getElementById("workspace-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
 
-    const newWS = {
-      propertyId: +form.propertySelect.value,
-      workspaceName: form.workspaceName.value,
-      price: +form.price.value,
-      type: form.type.value,
-      capacity: +form.capacity.value,
-    };
+  const newWS = {
+    propertyId: +form.propertySelect.value,
+    workspaceName: form.workspaceName.value,
+    price: +form.price.value,
+    type: form.type.value,
+    capacity: +form.capacity.value,
+    smokingAllowed: form.smokingAllowed.checked,
+    availabilityDate: form.availabilityDate.value,
+    leaseTerm: form.leaseTerm.value
+  };
 
-    const res = await fetch("http://localhost:3001/api/workspaces", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newWS),
-    });
-
-    if (res.ok) {
-      form.reset();
-      fetchWorkspaces();
-    } else {
-      alert("Error adding workspace");
-    }
+  const res = await fetch("http://localhost:3001/api/workspaces", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newWS),
   });
+
+  if (res.ok) {
+    form.reset();
+    fetchWorkspaces();
+  } else {
+    alert("Error adding workspace");
+  }
+});
 });
 
 async function fetchProperties() {
@@ -89,7 +92,17 @@ async function fetchWorkspaces() {
 
   data.forEach((ws) => {
     const div = document.createElement("div");
-    div.textContent = `${ws.workspaceName} ($${ws.price}) - ${ws.type}, capacity ${ws.capacity}`;
+
+    div.innerHTML = `
+      <strong>${ws.workspaceName}</strong> ($${ws.price})<br>
+      Type: ${ws.type}, Capacity: ${ws.capacity}<br>
+      Smoking Allowed: ${ws.smokingAllowed ? "Yes" : "No"}<br>
+      Availability Date: ${ws.availabilityDate || "N/A"}<br>
+      Lease Term: ${ws.leaseTerm || "N/A"}
+      <hr>
+    `;
+
     list.appendChild(div);
   });
 }
+

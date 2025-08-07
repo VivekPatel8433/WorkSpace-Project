@@ -47,7 +47,9 @@
           <input name="sqft" type="number" placeholder="Sqft" required />
           <label><input type="checkbox" name="parking" /> Parking</label>
           <label><input type="checkbox" name="publicTransport" /> Near Public Transport</label>
+          <br> <br>
           <button type="submit">Add Property</button>
+          <br>
         </form>
         <div id="property-list"></div>
       </section>
@@ -62,13 +64,32 @@
           <select name="type" required>
             <option value="desk">Desk</option>
             <option value="room">Room</option>
+            <option value="meeting">Meeting Room</option>
           </select>
           <input name="capacity" type="number" placeholder="Capacity" required />
+          <label>
+      <input type="checkbox" name="smokingAllowed" />
+      Smoking Allowed
+     </label>
+     <label>
+      <br>
+      Availability Date:
+      <input type="date" name="availabilityDate" required />
+      </label>
+    <label>
+      Lease Term:
+      <select name="leaseTerm" required>
+        <option value="">Select Term</option>
+        <option value="day">Day</option>
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+      </select>
+    </label>
+    <br> <br>
           <button type="submit">Add Workspace</button>
         </form>
         <div id="workspace-list"></div>
       </section>
-
     </main>
   </div>
 

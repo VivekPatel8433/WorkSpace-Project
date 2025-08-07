@@ -1,9 +1,9 @@
 [
   {
-    "id": 1754566289893,
-    "address": "45425",
-    "neighborhood": "f",
-    "sqft": 555555,
+    "id": 1754583912622,
+    "address": "6 ave",
+    "neighborhood": "6st",
+    "sqft": 100,
     "parking": true,
     "publicTransport": false
   }

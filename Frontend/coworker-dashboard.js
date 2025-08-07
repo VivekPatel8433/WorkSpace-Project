@@ -8,21 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Content map for each sidebar section
   const contentMap = {
     "Search Spaces": `
-      <div class="smart-search">
-        <h2>Search Spaces</h2>
-        <p>Use this section to search for available coworking spaces.</p>
-        <label for="sort">Sort by:</label>
-        <select id="sort">
-          <option value="location">Location</option>
-          <option value="price">Price</option>
-          <option value="rating">Rating</option>
-        </select>
-        <div class="welcome-boxes">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
-        </div>
-      </div>
+    <a href="searchproperties.html" class="btn">Go to Full Search Page</a>
     `,
     "Saved Spaces": `
       <h2>Saved Spaces</h2>
