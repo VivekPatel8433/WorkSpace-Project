@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchProperties();
   fetchWorkspaces();
 
-  // Add property
+  // Property form submit (add or update)
   document.getElementById("property-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
+
     const newProperty = {
       address: form.address.value,
       neighborhood: form.neighborhood.value,
@@ -14,51 +15,70 @@ document.addEventListener("DOMContentLoaded", () => {
       publicTransport: form.publicTransport.checked,
     };
 
-    const res = await fetch("http://localhost:3001/api/properties", {
-      method: "POST",
+    const isEditing = form.dataset.editingId;
+    const url = isEditing
+      ? `http://localhost:3001/api/properties/${form.dataset.editingId}`
+      : "http://localhost:3001/api/properties";
+
+    const method = isEditing ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProperty),
     });
 
     if (res.ok) {
       form.reset();
+      delete form.dataset.editingId;
+      form.querySelector("button[type='submit']").textContent = "Add Property";
       fetchProperties();
     } else {
-      alert("Error adding property");
+      alert("Error saving property");
     }
   });
 
-  // Add workspace
-document.getElementById("workspace-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
+  // Workspace form submit (add or update)
+  document.getElementById("workspace-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-  const newWS = {
-    propertyId: +form.propertySelect.value,
-    workspaceName: form.workspaceName.value,
-    price: +form.price.value,
-    type: form.type.value,
-    capacity: +form.capacity.value,
-    smokingAllowed: form.smokingAllowed.checked,
-    availabilityDate: form.availabilityDate.value,
-    leaseTerm: form.leaseTerm.value
-  };
+    const newWS = {
+      propertyId: +form.propertySelect.value,
+      workspaceName: form.workspaceName.value,
+      price: +form.price.value,
+      type: form.type.value,
+      capacity: +form.capacity.value,
+      smokingAllowed: form.smokingAllowed.checked,
+      availabilityDate: form.availabilityDate.value,
+      leaseTerm: form.leaseTerm.value,
+    };
 
-  const res = await fetch("http://localhost:3001/api/workspaces", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newWS),
+    const isEditing = form.dataset.editingId;
+    const url = isEditing
+      ? `http://localhost:3001/api/workspaces/${form.dataset.editingId}`
+      : "http://localhost:3001/api/workspaces";
+
+    const method = isEditing ? "PUT" : "POST";
+
+    const res = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newWS),
+    });
+
+    if (res.ok) {
+      form.reset();
+      delete form.dataset.editingId;
+      form.querySelector("button[type='submit']").textContent = "Add Workspace";
+      fetchWorkspaces();
+    } else {
+      alert("Error saving workspace");
+    }
   });
-
-  if (res.ok) {
-    form.reset();
-    fetchWorkspaces();
-  } else {
-    alert("Error adding workspace");
-  }
-});
 });
 
+// Fetch and display properties with edit/delete buttons
 async function fetchProperties() {
   const res = await fetch("http://localhost:3001/api/properties");
   const data = await res.json();
@@ -70,12 +90,14 @@ async function fetchProperties() {
   select.innerHTML = '<option value="">Select a Property</option>';
 
   data.forEach((prop) => {
-    // Show properties in list
     const div = document.createElement("div");
-    div.textContent = `${prop.address} (${prop.neighborhood})`;
+    div.innerHTML = `
+      ${prop.address} (${prop.neighborhood})
+      <button onclick="editProperty(${prop.id})">Edit</button>
+      <button onclick="deleteProperty(${prop.id})">Delist</button>
+    `;
     list.appendChild(div);
 
-    // Add options to dropdown
     const opt = document.createElement("option");
     opt.value = prop.id;
     opt.textContent = prop.address;
@@ -83,6 +105,7 @@ async function fetchProperties() {
   });
 }
 
+// Fetch and display workspaces with edit/delete buttons
 async function fetchWorkspaces() {
   const res = await fetch("http://localhost:3001/api/workspaces");
   const data = await res.json();
@@ -92,17 +115,84 @@ async function fetchWorkspaces() {
 
   data.forEach((ws) => {
     const div = document.createElement("div");
-
     div.innerHTML = `
-      <strong>${ws.workspaceName}</strong> ($${ws.price})<br>
-      Type: ${ws.type}, Capacity: ${ws.capacity}<br>
-      Smoking Allowed: ${ws.smokingAllowed ? "Yes" : "No"}<br>
-      Availability Date: ${ws.availabilityDate || "N/A"}<br>
-      Lease Term: ${ws.leaseTerm || "N/A"}
-      <hr>
+      ${ws.workspaceName} ($${ws.price}) - ${ws.type}, capacity ${ws.capacity}
+      <button onclick="editWorkspace(${ws.id})">Edit</button>
+      <button onclick="deleteWorkspace(${ws.id})">Delist</button>
     `;
-
     list.appendChild(div);
   });
 }
 
+// Edit Property: populate property form for editing
+async function editProperty(id) {
+  const res = await fetch(`http://localhost:3001/api/properties/${id}`);
+  if (!res.ok) {
+    alert("Failed to fetch property");
+    return;
+  }
+  const prop = await res.json();
+
+  const form = document.getElementById("property-form");
+  form.address.value = prop.address;
+  form.neighborhood.value = prop.neighborhood;
+  form.sqft.value = prop.sqft;
+  form.parking.checked = prop.parking;
+  form.publicTransport.checked = prop.publicTransport;
+
+  form.dataset.editingId = id;
+  form.querySelector("button[type='submit']").textContent = "Update Property";
+}
+
+// Edit Workspace: populate workspace form for editing
+async function editWorkspace(id) {
+  const res = await fetch(`http://localhost:3001/api/workspaces/${id}`);
+  if (!res.ok) {
+    alert("Failed to fetch workspace");
+    return;
+  }
+  const ws = await res.json();
+
+  const form = document.getElementById("workspace-form");
+  form.propertySelect.value = ws.propertyId;
+  form.workspaceName.value = ws.workspaceName;
+  form.price.value = ws.price;
+  form.type.value = ws.type;
+  form.capacity.value = ws.capacity;
+  form.smokingAllowed.checked = ws.smokingAllowed;
+  form.availabilityDate.value = ws.availabilityDate;
+  form.leaseTerm.value = ws.leaseTerm;
+
+  form.dataset.editingId = id;
+  form.querySelector("button[type='submit']").textContent = "Update Workspace";
+}
+
+// Delete property with confirmation
+async function deleteProperty(id) {
+  if (!confirm("Are you sure you want to delist this property?")) return;
+
+  const res = await fetch(`http://localhost:3001/api/properties/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    fetchProperties();
+  } else {
+    alert("Failed to delist property");
+  }
+}
+
+// Delete workspace with confirmation
+async function deleteWorkspace(id) {
+  if (!confirm("Are you sure you want to delist this workspace?")) return;
+
+  const res = await fetch(`http://localhost:3001/api/workspaces/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    fetchWorkspaces();
+  } else {
+    alert("Failed to delist workspace");
+  }
+}

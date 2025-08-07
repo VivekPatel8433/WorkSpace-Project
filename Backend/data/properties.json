@@ -1,10 +1,10 @@
 [
   {
-    "id": 1754583912622,
-    "address": "6 ave",
-    "neighborhood": "6st",
-    "sqft": 100,
-    "parking": true,
-    "publicTransport": false
+    "id": 1754588536271,
+    "address": "912 8 ave NW",
+    "neighborhood": "6 ST",
+    "sqft": 50,
+    "parking": false,
+    "publicTransport": true
   }
 ]
