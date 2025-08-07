@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <title>Workspace Search</title>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -23,7 +25,7 @@
   </header>
 
   <!-- FLOATING SEARCH CONTROLS -->
-  <div class="bg-white shadow-md rounded-md p-6 mt-6 max-w-4xl mx-auto">
+  <div class="bg-white shadow-md rounded-md p-6 mt-6 max-w-6xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between gap-4 items-center">
       <select id="location" class="border border-gray-300 rounded px-4 py-2 w-full md:w-1/3">
         <option value="">All Locations</option>
@@ -46,25 +48,96 @@
   </div>
 
   <!-- MAIN CONTENT -->
-  <main class="flex flex-col md:flex-row max-w-6xl mx-auto mt-8">
+  <main class="flex flex-col lg:flex-row max-w-full mx-auto mt-8 gap-6 px-4">
     <!-- FILTER SIDEBAR -->
-    <aside class="w-full md:w-1/4 bg-white p-4 border border-gray-200 rounded-md shadow-sm mb-6 md:mb-0 md:mr-6">
+    <aside class="w-full lg:w-1/6 bg-white p-4 border border-gray-200 rounded-md shadow-sm">
       <h2 class="text-xl font-bold mb-4">Filters</h2>
-      <div class="space-y-3 mb-6">
-        <label class="flex items-center gap-2"><input type="checkbox" name="wifi" /> WiFi</label>
-        <label class="flex items-center gap-2"><input type="checkbox" name="parking" /> Parking</label>
-        <label class="flex items-center gap-2"><input type="checkbox" name="kitchen" /> Kitchen</label>
-        <label class="flex items-center gap-2"><input type="checkbox" name="meeting" /> Meeting Room</label>
+      
+      <!-- Address/Neighborhood -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Address/Neighborhood</label>
+        <input type="text" id="addressFilter" placeholder="Enter address or neighborhood" 
+               class="border border-gray-300 rounded px-3 py-2 w-full text-sm" />
       </div>
+
+      <!-- Square Feet -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Square Feet</label>
+        <div class="flex gap-2">
+          <input type="number" id="minSqFt" placeholder="Min" 
+                 class="border border-gray-300 rounded px-3 py-2 w-1/2 text-sm" />
+          <input type="number" id="maxSqFt" placeholder="Max" 
+                 class="border border-gray-300 rounded px-3 py-2 w-1/2 text-sm" />
+        </div>
+      </div>
+
+      <!-- Capacity -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Seating Capacity</label>
+        <input type="number" id="capacityFilter" placeholder="Number of people" 
+               class="border border-gray-300 rounded px-3 py-2 w-full text-sm" />
+      </div>
+
+      <!-- Price Range -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Price Range ($/day)</label>
+        <div class="flex gap-2">
+          <input type="number" id="minPrice" placeholder="Min" 
+                 class="border border-gray-300 rounded px-3 py-2 w-1/2 text-sm" />
+          <input type="number" id="maxPrice" placeholder="Max" 
+                 class="border border-gray-300 rounded px-3 py-2 w-1/2 text-sm" />
+        </div>
+      </div>
+
+      <!-- Availability Date -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Availability Date</label>
+        <input type="date" id="availabilityDate" 
+               class="border border-gray-300 rounded px-3 py-2 w-full text-sm" />
+      </div>
+
+      <!-- Lease Term -->
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Lease Term</label>
+        <select id="leaseTerm" class="border border-gray-300 rounded px-3 py-2 w-full text-sm">
+          <option value="">Any</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+
+      <!-- Amenities -->
+      <div class="mb-4">
+        <h3 class="text-sm font-medium mb-2">Amenities</h3>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2"><input type="checkbox" name="wifi" /> WiFi</label>
+          <label class="flex items-center gap-2"><input type="checkbox" name="parking" /> Parking</label>
+          <label class="flex items-center gap-2"><input type="checkbox" name="kitchen" /> Kitchen</label>
+          <label class="flex items-center gap-2"><input type="checkbox" name="meeting" /> Meeting Room</label>
+          <label class="flex items-center gap-2"><input type="checkbox" name="publicTransport" /> Public Transportation</label>
+          <label class="flex items-center gap-2"><input type="checkbox" name="smoking" /> Smoking Allowed</label>
+        </div>
+      </div>
+
       <button id="filtersSearchBtn" class="bg-gray-600 text-white px-4 py-2 w-full rounded font-semibold hover:bg-gray-500 transition">
         Apply Filters
       </button>
     </aside>
 
-    <!-- RESULTS SECTION -->
-    <section class="flex-1 space-y-6" id="results">
+    <!-- MIDDLE SECTION: RESULTS -->
+    <section class="flex-1" id="results">
       <!-- Workspace Cards will be rendered here -->
     </section>
+
+    <!-- RIGHT SECTION: MAP -->
+    <aside class="w-full lg:w-1/4 bg-white border border-gray-200 rounded-md shadow-sm lg:sticky lg:top-6 lg:self-start">
+      <div class="p-4 border-b border-gray-200">
+        <h3 class="text-lg font-semibold">Map View</h3>
+      </div>
+      <div id="map" class="w-full h-96 lg:h-[calc(100vh-200px)] rounded-b-md"></div>
+    </aside>
   </main>
 
   <!-- FOOTER -->
@@ -72,9 +145,23 @@
     &copy; Workspace Finder 2025
   </footer>
 
-  <!-- Map Container -->
-  <div id="map" class="w-full h-64 mt-8 max-w-6xl mx-auto rounded-md shadow"></div>
+  <!-- Workspace Details Modal -->
+  <div id="workspaceModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-auto">
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="modalTitle" class="text-2xl font-bold"></h2>
+          <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+        </div>
+        <div id="modalContent">
+          <!-- Content will be dynamically populated -->
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!-- Script -->
   <script src="searchproperties.js"></script>
 </body>
