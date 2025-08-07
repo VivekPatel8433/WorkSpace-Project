@@ -39,13 +39,16 @@
       <!-- Property Form -->
       <section id="property-form-section">
         <h2>Add Property</h2>
-        <form id="property-form">
+        <form id="property-form" enctype="multipart/form-data">
           <input name="address" placeholder="Address" required />
           <input name="neighborhood" placeholder="Neighborhood" required />
           <input name="sqft" type="number" placeholder="Sqft" required />
           <label><input type="checkbox" name="parking" /> Parking</label>
           <label><input type="checkbox" name="publicTransport" /> Near Public Transport</label>
           <br> <br>
+          <label>Upload Photos:</label>
+          <input type="file" name="photos" multiple accept="image/*" />
+          <br><br>
           <button type="submit">Add Property</button>
           <br>
         </form>
@@ -83,7 +86,10 @@
         <option value="month">Month</option>
       </select>
     </label>
-    <br> <br>
+    <br><br>
+    <label>Upload Photos:</label>
+          <input type="file" name="photos" multiple accept="image/*" />
+          <br><br>
           <button type="submit">Add Workspace</button>
         </form>
         <div id="workspace-list"></div>

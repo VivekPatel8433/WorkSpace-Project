@@ -1,13 +1,1 @@
-[
-  {
-    "id": 1754588567353,
-    "propertyId": 1754588536271,
-    "workspaceName": "Hello",
-    "price": 50,
-    "type": "room",
-    "capacity": 50,
-    "smokingAllowed": true,
-    "availabilityDate": "2025-08-06",
-    "leaseTerm": "week"
-  }
-]
+[]
