@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/file/owner-dashboard.css" />
 </head>
 <body>
+
   <!-- Top Header -->
   <header class="top-bar">
     <div class="logo-brand">
@@ -37,32 +38,41 @@
     <!-- Main Content -->
     <main class="dashboard-content">
 
-      <!-- Static Forms and Properties Container -->
-        <section id="property-form-section">
-    <h2>Add Property</h2>
-    <form id="property-form">
-      <input name="address" placeholder="Address" required />
-      <input name="neighborhood" placeholder="Neighborhood" required />
-      <input name="sqft" type="number" placeholder="Sqft" required />
-      <label><input type="checkbox" name="parking" /> Parking</label>
-      <label><input type="checkbox" name="publicTransport" /> Near Public Transport</label>
-      <button type="submit">Add Property</button>
-    </form>
-  </section>
+      <!-- Property Form -->
+      <section id="property-form-section">
+        <h2>Add Property</h2>
+        <form id="property-form">
+          <input name="address" placeholder="Address" required />
+          <input name="neighborhood" placeholder="Neighborhood" required />
+          <input name="sqft" type="number" placeholder="Sqft" required />
+          <label><input type="checkbox" name="parking" /> Parking</label>
+          <label><input type="checkbox" name="publicTransport" /> Near Public Transport</label>
+          <button type="submit">Add Property</button>
+        </form>
+        <div id="property-list"></div>
+      </section>
 
-     <section id="workspace-form-section" style="display:none;">
-    <h2>Add Workspace</h2>
-    <form id="workspace-form">
-      <input name="name" placeholder="Workspace Name" required />
-      <input name="capacity" type="number" placeholder="Capacity" required />
-      <select id="propertySelect" name="propertyId" required></select>
-      <button type="submit">Add Workspace</button>
-    </form>
-  </section>
+      <!-- Workspace Form -->
+      <section id="workspace-section">
+        <h2>Workspaces</h2>
+        <form id="workspace-form">
+          <select id="propertySelect" name="propertySelect" required></select>
+          <input name="workspaceName" placeholder="Workspace Name" required />
+          <input name="price" type="number" placeholder="Price" required />
+          <select name="type" required>
+            <option value="desk">Desk</option>
+            <option value="room">Room</option>
+          </select>
+          <input name="capacity" type="number" placeholder="Capacity" required />
+          <button type="submit">Add Workspace</button>
+        </form>
+        <div id="workspace-list"></div>
+      </section>
 
-  <div id="property-list"></div>
-  <div id="workspace-list"></div>
+    </main>
+  </div>
 
-  <script src="owners-dashboard.js"></script>
+  <!-- JavaScript File -->
+  <script defer src="owner-dashboard.js"></script>
 </body>
 </html>

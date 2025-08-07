@@ -1,12 +1,7 @@
-
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
-
-
-// Async read
-
 
 const app = express();
 const PORT = 3001;
@@ -16,8 +11,6 @@ app.use(express.json());
 
 
 const loginFilePath = path.join(__dirname, 'data', 'login.json');
-
-
 const publicPath = path.join(__dirname, '..', 'Frontend');
 app.use(express.static(publicPath));
 
@@ -95,34 +88,56 @@ app.post('/login', (req,res) => {
 
 // Read data from file
 
-// Helper: Read JSON from file
 function readData(filePath) {
   if (!fs.existsSync(filePath)) return [];
-  const data = fs.readFileSync(filePath);
-  return JSON.parse(data || "[]");
+  try {
+    const data = fs.readFileSync(filePath, "utf-8");
+    return JSON.parse(data || "[]");
+  } catch (error) {
+    console.error(`Error reading or parsing ${filePath}:`, error);
+    return [];
+  }
 }
+
 
 // Helper: Write JSON to file
 function writeData(filePath, data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  try {
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  } catch (error) {
+    console.error(`Error writing file ${filePath}:`, error);
+    throw error;
+  }
 }
+
+
 
 // ROUTES
 
 // Get all properties
 app.get("/api/properties", (req, res) => {
-  const properties = readData(propertiesPath);
-  res.json(properties);
+  try {
+    const properties = readData(propertiesPath);
+    res.json(properties);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 // Add new property
 app.post("/api/properties", (req, res) => {
-  const properties = readData(propertiesPath);
-  const newProp = { id: Date.now(), ...req.body };
-  properties.push(newProp);
-  writeData(propertiesPath, properties);
-  res.status(201).json(newProp);
+  try {
+    const properties = readData(propertiesPath);
+    const newProp = { id: Date.now(), ...req.body };
+    properties.push(newProp);
+    writeData(propertiesPath, properties);
+    res.status(201).json(newProp);
+  } catch (error) {
+    res.status(500).json({ message: "Could not save property" });
+  }
 });
+
 
 // Get all workspaces
 app.get("/api/workspaces", (req, res) => {
@@ -132,11 +147,15 @@ app.get("/api/workspaces", (req, res) => {
 
 // Add new workspace
 app.post("/api/workspaces", (req, res) => {
-  const workspaces = readData(workspacesPath);
-  const newWS = { id: Date.now(), ...req.body };
-  workspaces.push(newWS);
-  writeData(workspacesPath, workspaces);
-  res.status(201).json(newWS);
+  try {
+    const workspaces = readData(workspacesPath); // Read from workspaces.json
+    const newWS = { id: Date.now(), ...req.body };
+    workspaces.push(newWS);
+    writeData(workspacesPath, workspaces); // Write back to workspaces.json
+    res.status(201).json(newWS);
+  } catch (error) {
+    res.status(500).json({ message: "Could not save workspace" });
+  }
 });
 
 app.listen(PORT, () => {
