@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1754566298658,
+    "propertyId": 1754566289893,
+    "workspaceName": "vj",
+    "price": 500,
+    "type": "desk",
+    "capacity": 4
+  },
+  {
+    "id": 1754566517582,
+    "propertyId": 1754566289893,
+    "workspaceName": "4",
+    "price": 50,
+    "type": "desk",
+    "capacity": 50
+  }
+]
