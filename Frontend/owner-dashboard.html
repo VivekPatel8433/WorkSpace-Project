@@ -1,12 +1,11 @@
-<!--Owner Dashboard-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owner-Dashboard</title>
-    <link rel="stylesheet" href="owner-dashboard.css">
+    <link rel="stylesheet" href="/file/owner-dashboard.css"/>
+
 </head>
 <body>
      <!-- Top Header -->
@@ -14,12 +13,6 @@
 
   <!-- Logo SVG + Title -->
   <div class="logo-brand">
-    <div class="logo-svg">
-      <svg width="70" height="40" viewBox="0 0 70 40" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#000">W</text>
-        <text x="36" y="30" font-size="32" font-family="Arial, sans-serif" font-weight="normal" fill="#000">_</text>
-      </svg>
-    </div>
     <h1 class="brand-name">Work_Spaces</h1>
   </div>
   
@@ -44,33 +37,84 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-      <button>Overview</button>
       <button class="active">Properties</button>
       <button>Booking Request</button>
       <button>Reviews & Rating</button>
       <button>Account Settings</button>
     </aside>
 
+  
     <!-- Main Content -->
     <main class="dashboard-content">
       <h2>Main Content Area</h2>
 
-      <section class="overview-stats">
-        <h3>Overview Stats</h3>
-        <div class="stat-grid">
-          <div class="stat-card">
-            <p>Total Properties: <strong>3</strong></p>
-          </div>
-          <div class="stat-card">
-            <p>Active Workspaces: <strong>2</strong></p>
-          </div>
-          <div class="stat-card">
-            <p>Pending Request: <strong>1</strong></p>
-          </div>
-          <div class="stat-card">
-            <p>Average Rating: <strong>4.7 ⭐</strong></p>
-          </div>
-        </div>
+
+          <!-- Property Listing Form -->
+  <form id="propertyForm">
+    <h2>Add New Property</h2> 
+    <label>Address
+      <input type="text" name="address" required /> <br>
+    </label>
+    <br>
+    <label>Neighborhood 
+      <input type="text" name="neighborhood" required />
+    </label>
+     <br> <br>
+    <label>Square Feet
+      <input type="number" name="squareFeet" min="1" required />
+    </label>
+     <br> <br>
+    <label><input type="checkbox" name="parkingGarage" /> Has Parking Garage</label>
+     <br>
+    <label><input type="checkbox" name="publicTransit" /> Reachable by Public Transit</label>
+     <br>
+    <button type="submit">Add Property</button>
+  </form>
+
+  <!-- Workspace Listing Form -->
+  <form id="workspaceForm" style="display:none;">
+    <h2>Add Workspace to Property</h2>
+    <br>
+    <label>Select Property
+      <select id="propertySelect" required></select>
+    </label>
+    <br>
+    <label>Workspace Type
+      <select name="type" required>
+        <option value="Meeting Room">Meeting Room</option>
+        <option value="Private Office">Private Office</option>
+        <option value="Open Desk">Open Desk</option>
+      </select>
+    </label>
+    <br>
+    <label>Seating Capacity
+      <input type="number" name="seating" min="1" required />
+    </label>
+    <br>
+    <label><input type="checkbox" name="smokingAllowed" /> Smoking Allowed</label> <br>
+    <label>Availability Date
+      <input type="date" name="availabilityDate" required />
+    </label>
+    <br>
+    <label>Lease Term
+      <select name="leaseTerm" required>
+        <option value="Day">Day</option>
+        <option value="Week">Week</option>
+        <option value="Month">Month</option>
+      </select>
+    </label>
+    <br>
+    <label>Price
+      <input type="number" name="price" min="0" step="0.01" required />
+    </label>
+    <br>
+    <button type="submit">Add Workspace</button>
+  </form>
+
+  <!-- Display Properties and Workspaces -->
+  <div id="propertiesContainer">
+    <h2>Your Properties & Workspaces</h2>
+  </div>
       </section>
 
       <section class="content-blocks">
