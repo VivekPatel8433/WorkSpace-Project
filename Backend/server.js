@@ -4,6 +4,10 @@ const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
 
+
+// Async read
+
+
 const app = express();
 const PORT = 3001;
 
@@ -18,6 +22,9 @@ const publicPath = path.join(__dirname, '..', 'Frontend');
 app.use(express.static(publicPath));
 
 app.use("/file", express.static(path.join(__dirname, "..", "file")));
+
+const propertiesPath = path.join(__dirname, "data", "properties.json");
+const workspacesPath = path.join(__dirname, "data", "workspaces.json");
 
 
 // Login Route
@@ -84,6 +91,54 @@ app.post('/login', (req,res) => {
       });
     });
 
-   app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+// Properties route
+
+// Read data from file
+
+// Helper: Read JSON from file
+function readData(filePath) {
+  if (!fs.existsSync(filePath)) return [];
+  const data = fs.readFileSync(filePath);
+  return JSON.parse(data || "[]");
+}
+
+// Helper: Write JSON to file
+function writeData(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+}
+
+// ROUTES
+
+// Get all properties
+app.get("/api/properties", (req, res) => {
+  const properties = readData(propertiesPath);
+  res.json(properties);
+});
+
+// Add new property
+app.post("/api/properties", (req, res) => {
+  const properties = readData(propertiesPath);
+  const newProp = { id: Date.now(), ...req.body };
+  properties.push(newProp);
+  writeData(propertiesPath, properties);
+  res.status(201).json(newProp);
+});
+
+// Get all workspaces
+app.get("/api/workspaces", (req, res) => {
+  const workspaces = readData(workspacesPath);
+  res.json(workspaces);
+});
+
+// Add new workspace
+app.post("/api/workspaces", (req, res) => {
+  const workspaces = readData(workspacesPath);
+  const newWS = { id: Date.now(), ...req.body };
+  workspaces.push(newWS);
+  writeData(workspacesPath, workspaces);
+  res.status(201).json(newWS);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
