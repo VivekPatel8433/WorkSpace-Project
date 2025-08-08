@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Bookings: `
       <h2>Bookings</h2>
       <p>Manage your booking requests and history.</p>
+      <div id="bookingsContainer"></div>
       <div class="booking-card">
         <h3>Booked Space</h3>
         <p>Date: 01/08/2025</p>
@@ -53,12 +54,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Load content by button text
       const section = button.textContent.trim();
-      mainContent.innerHTML =
-        contentMap[section] ||
-        `<h2>${section}</h2><p>No content available.</p>`;
+      if (section === "Bookings") {
+        loadBookings();
+      } else {
+        mainContent.innerHTML =
+          contentMap[section] ||
+          `<h2>${section}</h2><p>No content available.</p>`;
+      }
     });
   });
-
-  // Load default content (Search Spaces)
-  buttons[0].click();
 });
+
+function loadBookings() {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser) {
+    alert("Please login first");
+    return;
+  }
+
+  fetch("http://localhost:3001/api/bookings")
+    .then((res) => res.json())
+    .then((bookings) => {
+      // Filter bookings by logged-in user's email
+      const userBookings = bookings.filter(
+        (b) => b.userEmail === loggedInUser.email
+      );
+
+      const mainContent = document.querySelector(".main-content");
+      if (!mainContent) return;
+
+      if (userBookings.length === 0) {
+        mainContent.innerHTML = "<h2>Bookings</h2><p>No bookings found.</p>";
+        return;
+      }
+
+      let html = "<h2>Bookings</h2>";
+      userBookings.forEach((booking) => {
+        html += `
+          <div class="booking-card">
+            <h3>Workspace ID: ${booking.workspaceId}</h3>
+            <p>Date: ${new Date(booking.date).toLocaleString()}</p>
+            <p>User Email: ${booking.userEmail}</p>
+            <div class="actions">
+              <button>Cancel</button>
+              <button>Reschedule</button>
+            </div>
+          </div>
+        `;
+      });
+
+      mainContent.innerHTML = html;
+    })
+    .catch((error) => {
+      console.error("Failed to load bookings:", error);
+      alert("Failed to load bookings.");
+    });
+}
