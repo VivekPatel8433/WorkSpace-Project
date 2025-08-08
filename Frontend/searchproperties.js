@@ -462,10 +462,16 @@ function renderResults(data) {
             </div>
             
             <div class="flex justify-end gap-3">
+
+            <button onclick="bookWorkspace(${item.id})" 
+            class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700 transition ml-2"> Book Now
+            </button>
+
               <button onclick="showOnMap(${sanitizedWorkspaceId})" 
                       class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition font-semibold">
                 View on Map
               </button>
+
               <button onclick="showWorkspaceDetails(${sanitizedWorkspaceId})" 
                       class="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700 transition font-semibold">
                 View Details
@@ -735,4 +741,25 @@ function showOnMap(workspaceId) {
       marker.openPopup();
     }
   }
+}
+
+/* Booking button function  */
+function bookWorkspace(id) {
+  console.log("Book button clicked with workspace id:", id);
+  fetch("http://localhost:3001/api/book", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ workspaceId: id, date: new Date().toISOString() }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Booking failed");
+      return res.json();
+    })
+    .then((data) => {
+      alert("Booking successful!");
+      console.log(data);
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
 }
