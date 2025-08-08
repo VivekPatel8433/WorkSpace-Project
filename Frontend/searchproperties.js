@@ -745,11 +745,20 @@ function showOnMap(workspaceId) {
 
 /* Booking button function  */
 function bookWorkspace(id) {
-  console.log("Book button clicked with workspace id:", id);
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser || !loggedInUser.email) {
+    alert("You must be logged in to book");
+    return;
+  }
+
   fetch("http://localhost:3001/api/book", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ workspaceId: id, date: new Date().toISOString() }),
+    body: JSON.stringify({
+      workspaceId: id,
+      date: new Date().toISOString(),
+      userEmail: loggedInUser.email, // send the correct email here
+    }),
   })
     .then((res) => {
       if (!res.ok) throw new Error("Booking failed");
