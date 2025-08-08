@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.sidebar button');
-  const mainContent = document.querySelector('.main-content');
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".sidebar button");
+  const mainContent = document.querySelector(".main-content");
 
   // Ensure mainContent exists
   if (!mainContent || buttons.length === 0) return;
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="block"></div>
       </div>
     `,
-    "Bookings": `
+    Bookings: `
       <h2>Bookings</h2>
       <p>Manage your booking requests and history.</p>
       <div class="booking-card">
@@ -40,20 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     "Account Settings": `
       <h2>Account Settings</h2>
       <p>Manage your personal account information and preferences here.</p>
-    `
+    `,
   };
 
   // Button click handler
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
       // Remove 'active' class from all
-      buttons.forEach(b => b.classList.remove('active'));
+      buttons.forEach((b) => b.classList.remove("active"));
       // Add 'active' to clicked
-      button.classList.add('active');
+      button.classList.add("active");
 
       // Load content by button text
       const section = button.textContent.trim();
-      mainContent.innerHTML = contentMap[section] || `<h2>${section}</h2><p>No content available.</p>`;
+      mainContent.innerHTML =
+        contentMap[section] ||
+        `<h2>${section}</h2><p>No content available.</p>`;
     });
   });
 
