@@ -11,6 +11,8 @@ app.use(express.json());
 
 const loginFilePath = path.join(__dirname, "data", "login.json");
 const publicPath = path.join(__dirname, "..", "Frontend");
+const bookingsPath = path.join(__dirname, "data", "bookings.json");
+
 app.use(express.static(publicPath));
 
 app.use("/file", express.static(path.join(__dirname, "..", "file")));
@@ -18,7 +20,7 @@ app.use("/file", express.static(path.join(__dirname, "..", "file")));
 const propertiesPath = path.join(__dirname, "data", "properties.json");
 const workspacesPath = path.join(__dirname, "data", "workspaces.json");
 
-// Login Route (unchanged)
+// Login Route
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -28,7 +30,9 @@ app.post("/login", (req, res) => {
     }
 
     const users = JSON.parse(data);
-    const user = users.find((u) => u.email === email && u.password === password);
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
 
     if (user) {
       res.json(user);
@@ -38,12 +42,14 @@ app.post("/login", (req, res) => {
   });
 });
 
-// Register Route (unchanged)
+// Register Route
 app.post("/register", (req, res) => {
   const { email, password, role, firstName, lastName, phoneNumber } = req.body;
 
   if (!email || !password || !role) {
-    return res.status(400).json({ message: "Please provide email, password, and role" });
+    return res
+      .status(400)
+      .json({ message: "Please provide email, password, and role" });
   }
 
   fs.readFile(loginFilePath, "utf-8", (err, data) => {
@@ -233,6 +239,25 @@ app.delete("/api/workspaces/:id", (req, res) => {
   }
 });
 
+/* Bookings */
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+app.post("/api/book", (req, res) => {
+  try {
+    const bookings = readData(bookingsPath);
+    const newBooking = {
+      id: Date.now(),
+      workspaceId: req.body.workspaceId,
+      date: req.body.date,
+      userEmail: req.body.userEmail, // store user email to know who booked
+    };
+    bookings.push(newBooking);
+    writeData(bookingsPath, bookings);
+    res.status(201).json(newBooking);
+  } catch (error) {
+    console.error("Booking error:", error);
+    res.status(500).json({ message: "Could not save booking" });
+  }
 });
