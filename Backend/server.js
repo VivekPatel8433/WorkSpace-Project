@@ -261,3 +261,13 @@ app.post("/api/book", (req, res) => {
     res.status(500).json({ message: "Could not save booking" });
   }
 });
+
+app.get("/api/bookings", (req, res) => {
+  try {
+    const bookings = readData(bookingsPath);
+    res.json(bookings);
+  } catch (error) {
+    console.error("Error fetching bookings:", error);
+    res.status(500).json({ message: "Could not load bookings" });
+  }
+});
