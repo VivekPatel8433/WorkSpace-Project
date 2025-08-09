@@ -16,7 +16,7 @@ const bookingsPath = path.join(__dirname, "data", "bookings.json");
 
 app.use(express.static(publicPath));
 
-app.use("/file", express.static(path.join(__dirname, "..", "file")));
+app.use("", express.static(path.join(__dirname, "..", "")));
 
 const propertiesPath = path.join(__dirname, "data", "properties.json");
 const workspacesPath = path.join(__dirname, "data", "workspaces.json");
