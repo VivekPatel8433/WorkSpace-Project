@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
 const path = require("path");
+const crypto = require("crypto");
 
 const app = express();
 const PORT = 3001;
@@ -20,6 +21,12 @@ app.use("/file", express.static(path.join(__dirname, "..", "file")));
 const propertiesPath = path.join(__dirname, "data", "properties.json");
 const workspacesPath = path.join(__dirname, "data", "workspaces.json");
 
+// Hashing password 
+
+function hashPassword(password) {
+  return crypto.createHash("sha256").update(password).digest("hex");
+}
+
 // Login Route
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
@@ -30,6 +37,8 @@ app.post("/login", (req, res) => {
     }
 
     const users = JSON.parse(data);
+
+    const hashedPassword = hashPassword(password);
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
@@ -64,7 +73,7 @@ app.post("/register", (req, res) => {
 
     const newUser = {
       email,
-      password,
+      password: hashedPassword,
       role,
       firstName: firstName || "",
       lastName: lastName || "",

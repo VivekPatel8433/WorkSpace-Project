@@ -8,7 +8,7 @@ function handleLoginSuccess(user) {
       // add other properties if needed
     })
   );
-  alert("Login successful! Welcome " + user.firstName);
+  alert("Login successful! Welcome");
 }
 
 document.querySelector("form").addEventListener("submit", async function (e) {

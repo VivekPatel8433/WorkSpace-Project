@@ -1,6 +1,6 @@
 [
   {
-    "email": "Hello@gmail.com",
+    "email": "owner@gmail.com",
     "password": "123",
     "role": "owner",
     "firstName": "Hello123",
@@ -8,7 +8,7 @@
     "phoneNumber": "1234567890"
   },
   {
-    "email": "Hello456@gmail.com",
+    "email": "co@gmail.com",
     "password": "12345",
     "role": "co-worker",
     "firstName": "Hello456",

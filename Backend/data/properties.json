@@ -6,5 +6,13 @@
     "sqft": 50,
     "parking": true,
     "publicTransport": true
+  },
+  {
+    "id": 1754695400260,
+    "address": "4542",
+    "neighborhood": "Us",
+    "sqft": 10,
+    "parking": true,
+    "publicTransport": false
   }
 ]
