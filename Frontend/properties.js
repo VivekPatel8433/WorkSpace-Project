@@ -1,6 +1,6 @@
 async function fetchProperties() {
   try {
-    const res = await fetch("http://localhost:3001/api/properties");
+    const res = await fetch("https://workspace-project.onrender.com/api/properties");
     if (!res.ok) throw new Error("Failed to fetch properties");
     const properties = await res.json();
 
@@ -58,7 +58,7 @@ document.getElementById("property-form").addEventListener("submit", async (e) =>
   };
 
   try {
-    const res = await fetch("http://localhost:3001/api/properties", {
+    const res = await fetch("https://workspace-project.onrender.com/api/properties", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProperty),

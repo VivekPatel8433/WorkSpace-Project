@@ -72,7 +72,7 @@ function loadBookings() {
     return;
   }
 
-  fetch("http://localhost:3001/api/bookings")
+  fetch("https://workspace-project.onrender.com/api/bookings")
     .then((res) => res.json())
     .then((bookings) => {
       // Filter bookings by logged-in user's email

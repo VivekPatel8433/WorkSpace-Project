@@ -33,7 +33,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   }
 
   try {
-    const response = await fetch("http://localhost:3001/login", {
+    const response = await fetch("https://workspace-project.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,10 +49,10 @@ document.querySelector("form").addEventListener("submit", async function (e) {
         handleLoginSuccess(data);
 
         if (data.role === "owner") {
-          window.location.href = "http://localhost:3001/owner-dashboard.html";
+          window.location.href = "https://workspace-project.onrender.com/owner-dashboard.html";
         } else if (data.role === "co-worker") {
           window.location.href =
-            "http://localhost:3001/coworker-dashboard.html";
+            "https://workspace-project.onrender.com/coworker-dashboard.html";
         }
       } else {
         alert("Role does not match the registered role for this user.");

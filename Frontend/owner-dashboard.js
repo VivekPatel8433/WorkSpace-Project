@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isEditing = form.dataset.editingId;
     const url = isEditing
-      ? `http://localhost:3001/api/properties/${form.dataset.editingId}`
-      : "http://localhost:3001/api/properties";
+      ? `https://workspace-project.onrender.com/api/properties/${form.dataset.editingId}`
+      : "https://workspace-project.onrender.com/api/properties";
 
     const method = isEditing ? "PUT" : "POST";
 
@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isEditing = form.dataset.editingId;
     const url = isEditing
-      ? `http://localhost:3001/api/workspaces/${form.dataset.editingId}`
-      : "http://localhost:3001/api/workspaces";
+      ? `https://workspace-project.onrender.com/api/workspaces/${form.dataset.editingId}`
+      : "https://workspace-project.onrender.com/workspaces";
 
     const method = isEditing ? "PUT" : "POST";
 
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Fetch and display properties with edit/delete buttons
 async function fetchProperties() {
-  const res = await fetch("http://localhost:3001/api/properties");
+  const res = await fetch("https://workspace-project.onrender.com/api/properties");
   const data = await res.json();
 
   const list = document.getElementById("property-list");
@@ -107,7 +107,7 @@ async function fetchProperties() {
 
 // Fetch and display workspaces with edit/delete buttons
 async function fetchWorkspaces() {
-  const res = await fetch("http://localhost:3001/api/workspaces");
+  const res = await fetch("https://workspace-project.onrender.com/api/workspaces");
   const data = await res.json();
 
   const list = document.getElementById("workspace-list");
@@ -126,7 +126,7 @@ async function fetchWorkspaces() {
 
 // Edit Property: populate property form for editing
 async function editProperty(id) {
-  const res = await fetch(`http://localhost:3001/api/properties/${id}`);
+  const res = await fetch(`https://workspace-project.onrender.com/api/properties/${id}`);
   if (!res.ok) {
     alert("Failed to fetch property");
     return;
@@ -146,7 +146,7 @@ async function editProperty(id) {
 
 // Edit Workspace: populate workspace form for editing
 async function editWorkspace(id) {
-  const res = await fetch(`http://localhost:3001/api/workspaces/${id}`);
+  const res = await fetch(`https://workspace-project.onrender.com/api/workspaces/${id}`);
   if (!res.ok) {
     alert("Failed to fetch workspace");
     return;
@@ -171,7 +171,7 @@ async function editWorkspace(id) {
 async function deleteProperty(id) {
   if (!confirm("Are you sure you want to delist this property?")) return;
 
-  const res = await fetch(`http://localhost:3001/api/properties/${id}`, {
+  const res = await fetch(`https://workspace-project.onrender.com/api/properties/${id}`, {
     method: "DELETE",
   });
 
@@ -186,7 +186,7 @@ async function deleteProperty(id) {
 async function deleteWorkspace(id) {
   if (!confirm("Are you sure you want to delist this workspace?")) return;
 
-  const res = await fetch(`http://localhost:3001/api/workspaces/${id}`, {
+  const res = await fetch(`https://workspace-project.onrender.com/api/workspaces/${id}`, {
     method: "DELETE",
   });
 

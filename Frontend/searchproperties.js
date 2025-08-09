@@ -751,7 +751,7 @@ function bookWorkspace(id) {
     return;
   }
 
-  fetch("http://localhost:3001/api/book", {
+  fetch("https://workspace-project.onrender.com/api/book", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
