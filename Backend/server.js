@@ -38,9 +38,12 @@ app.post("/login", (req, res) => {
 
     const users = JSON.parse(data);
 
+    // Hash the incoming password before checking
     const hashedPassword = hashPassword(password);
+
+    // Find user matching email and hashed password
     const user = users.find(
-      (u) => u.email === email && u.password === password
+      (u) => u.email === email && u.password === hashedPassword
     );
 
     if (user) {
@@ -50,6 +53,7 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
 
 // Register Route
 app.post("/register", (req, res) => {
@@ -71,6 +75,7 @@ app.post("/register", (req, res) => {
       return res.status(409).json({ message: "User already exists" });
     }
 
+     const hashedPassword = hashPassword(password);
     const newUser = {
       email,
       password: hashedPassword,
