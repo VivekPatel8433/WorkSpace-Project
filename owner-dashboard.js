@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isEditing = form.dataset.editingId;
     const url = isEditing
       ? `https://workspace-project.onrender.com/api/workspaces/${form.dataset.editingId}`
-      : "https://workspace-project.onrender.com/workspaces";
+      : "https://workspace-project.onrender.com/api/workspaces";
 
     const method = isEditing ? "PUT" : "POST";
 
