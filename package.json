@@ -4,7 +4,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0"
   },
-  "scripts": {
-  "start": "node server.js"
+"scripts": {
+  "start": "node Backend/server.js"
 }
 }
+
