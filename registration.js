@@ -38,7 +38,6 @@ document.querySelector("form").addEventListener("submit", async function (e) {
       alert(data.message || "Registration failed");
     }
   } catch (error) {
-    console.error("Fetch error:", error);
     alert("Server error. Please try again later.");
   }
 });
