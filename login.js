@@ -43,10 +43,10 @@ document.querySelector("form").addEventListener("submit", async function (e) {
         );
 
         if (data.role === "owner") {
-          window.location.href = "https://workspace-project.onrender.com/owner-dashboard.html";
+          window.location.href = "https://vivekpatel8433.github.io/WorkSpace-Project/owner-dashboard.html";
         } else if (data.role === "co-worker") {
           window.location.href =
-            "https://workspace-project.onrender.com/coworker-dashboard.html";
+            "https://vivekpatel8433.github.io/WorkSpace-Project/coworker-dashboard.html";
         }
       } else {
         alert("Role does not match the registered role for this user.");
