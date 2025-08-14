@@ -1,67 +1,29 @@
 require("dotenv").config();
-const mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("MongoDB connected successfully"))
-.catch((err) => console.error("MongoDB connection error:", err));
-
-
 const express = require("express");
 const cors = require("cors");
-const bcrypt = require("bcryptjs");
-const User = require("./user");
+const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Connect to DB
+connectDB();
+
 app.use(cors());
 app.use(express.json());
+
+// Routes
+app.use("/api/auth", authRoutes);
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 // Login Route
 
 
 
-// Register Route
-app.post("/register", async (req, res) => {
-  const { email, password, role, firstName, lastName, phoneNumber } = req.body;
 
-  // Check required fields
-  if (!email || !password || !role) {
-    return res.status(400).json({ message: "Please provide email, password, and role" });
-  }
-
-  try {
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({ message: "User already exists" });
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
-    const newUser = new User({
-      email,
-      password: hashedPassword,
-      role,
-      firstName,
-      lastName,
-      phoneNumber,
-    });
-
-    await newUser.save();
-
-    res.status(201).json({ message: "User registered successfully" });
-  }
-    catch (err) {
-    console.error("Registration error:", err);
-    res.status(500).json({ message: "Server error", error: err.message });
-}
-});
 
 
 

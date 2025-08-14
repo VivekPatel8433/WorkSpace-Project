@@ -5,7 +5,6 @@ function handleLoginSuccess(user) {
       email: user.email,
       firstName: user.firstName,
       role: user.role,
-      // add other properties if needed
     })
   );
   alert("Login successful! Welcome");
@@ -33,7 +32,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   }
 
   try {
-    const response = await fetch("https://localhost:3001/login", {
+    const response = await fetch("https://workspace-project.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
