@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 3001;
 // Connect to DB
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://vivekpatel8433.github.io",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes
