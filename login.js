@@ -1,12 +1,6 @@
-function handleLoginSuccess(user) {
-  localStorage.setItem(
-    "loggedInUser",
-    JSON.stringify({
-      email: user.email,
-      firstName: user.firstName,
-      role: user.role,
-    })
-  );
+function handleLoginSuccess(user, token) {
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+  localStorage.setItem("jwtToken", token); // store JWT for authenticated requests
   alert("Login successful! Welcome");
 }
 
@@ -32,11 +26,9 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   }
 
   try {
-    const response = await fetch("https://workspace-project.onrender.com/login", {
+    const response = await fetch("https://workspace-project.onrender.com/api/auth/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json"},
       body: JSON.stringify({ email, password }),
     });
 
@@ -45,7 +37,10 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     if (response.ok) {
       if (data.role === selectedRole) {
         // Save user info in localStorage
-        handleLoginSuccess(data);
+         handleLoginSuccess(
+          { email: data.email, firstName: data.firstName, role: data.role },
+          data.token
+        );
 
         if (data.role === "owner") {
           window.location.href = "https://workspace-project.onrender.com/owner-dashboard.html";
