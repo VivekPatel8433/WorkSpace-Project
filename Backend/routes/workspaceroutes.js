@@ -1,20 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const {
-  createWorkspace,
-  getWorkspaces,
-  getWorkspace,
-  updateWorkspace,
-  deleteWorkspace,
-} = require("../controllers/workspaceController");
 
+
+const propertyController = require("../controllers/workspaceController");
+
+// Routes
 router.route("/")
-  .post(createWorkspace)
-  .get(getWorkspaces);
+  .post(propertyController.createProperty)
+  .get(propertyController.getProperties);
 
 router.route("/:id")
-  .get(getWorkspace)
-  .put(updateWorkspace)
-  .delete(deleteWorkspace);
+  .get(propertyController.getProperty)
+  .put(propertyController.updateProperty)
+  .delete(propertyController.deleteProperty);
 
 module.exports = router;
