@@ -11,4 +11,5 @@ const workspaceSchema = new mongoose.Schema({
   leaseTerm: { type: String },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Workspace", workspaceSchema);
+const Workspace = mongoose.models.Workspace || mongoose.model("Workspace", workspaceSchema);
+module.exports = Workspace;
