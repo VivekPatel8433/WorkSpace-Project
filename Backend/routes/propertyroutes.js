@@ -6,7 +6,7 @@ const {
   getProperty,
   updateProperty,
   deleteProperty,
-} = require("../controllers/propertycontroller"); // make sure casing is correct
+} = require("../controllers/propertyController");
 
 router.route("/")
   .post(createProperty)
