@@ -14,7 +14,6 @@ connectDB();
 app.use(cors({
   origin: "https://vivekpatel8433.github.io",
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true,
 }));
 app.use(express.json());
 
