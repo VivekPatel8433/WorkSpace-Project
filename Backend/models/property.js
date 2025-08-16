@@ -9,4 +9,6 @@ const propertySchema = new mongoose.Schema({
   ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model("Property", propertySchema);
+const Property = mongoose.models.Property || mongoose.model("Property", propertySchema);
+
+module.exports = Property;
