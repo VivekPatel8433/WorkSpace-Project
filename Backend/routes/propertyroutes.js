@@ -7,14 +7,15 @@ const {
   updateProperty,
   deleteProperty,
 } = require("../controllers/propertyController");
+const authMiddleware = require("../middleware/auth");
 
 router.route("/")
-  .post(createProperty)
-  .get(getProperties);
+  .post(authMiddleware, createProperty)
+  .get(authMiddleware, getProperties);
 
 router.route("/:id")
-  .get(getProperty)
-  .put(updateProperty)
-  .delete(deleteProperty);
+  .get(authMiddleware, getProperty)
+  .put(authMiddleware, updateProperty)
+  .delete(authMiddleware, deleteProperty);
 
 module.exports = router;
