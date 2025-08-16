@@ -1,9 +1,11 @@
+// Handle successful login
 function handleLoginSuccess(user, token) {
   localStorage.setItem("loggedInUser", JSON.stringify(user));
   localStorage.setItem("jwtToken", token); // store JWT for authenticated requests
-  alert("Login successful! Welcome");
+  alert("Login successful! Welcome, " + user.firstName);
 }
 
+// Login form submit
 document.querySelector("form").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -15,7 +17,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   let selectedRole = null;
   for (const radio of roleRadios) {
     if (radio.checked) {
-      selectedRole = radio.id;
+      selectedRole = radio.id; // radio id = "owner" or "co-worker"
       break;
     }
   }
@@ -28,33 +30,30 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   try {
     const response = await fetch("https://workspace-project.onrender.com/api/auth/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, role: selectedRole }), // ✅ send role
     });
 
     const data = await response.json();
 
     if (response.ok) {
-      if (data.role === selectedRole) {
-        // Save user info in localStorage
-         handleLoginSuccess(
-          { email: data.email, firstName: data.firstName, role: data.role },
-          data.token
-        );
+      // Save user info and token
+      handleLoginSuccess(
+        { email: data.email, firstName: data.firstName, role: data.role },
+        data.token
+      );
 
-        if (data.role === "owner") {
-          window.location.href = "https://vivekpatel8433.github.io/WorkSpace-Project/owner-dashboard.html";
-        } else if (data.role === "co-worker") {
-          window.location.href =
-            "https://vivekpatel8433.github.io/WorkSpace-Project/coworker-dashboard.html";
-        }
-      } else {
-        alert("Role does not match the registered role for this user.");
+      // Redirect based on role
+      if (data.role === "owner") {
+        window.location.href = "https://vivekpatel8433.github.io/WorkSpace-Project/owner-dashboard.html";
+      } else if (data.role === "co-worker") {
+        window.location.href = "https://vivekpatel8433.github.io/WorkSpace-Project/coworker-dashboard.html";
       }
     } else {
-      alert(data.message || "Invalid credentials");
+      alert(data.message || "Invalid credentials or role mismatch");
     }
   } catch (err) {
+    console.error("Login error:", err);
     alert("Server error. Please try again later.");
   }
 });
