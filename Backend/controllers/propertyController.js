@@ -3,13 +3,18 @@ const Property = require("../models/property");
 // Create Property
 exports.createProperty = async (req, res) => {
   try {
-    const property = new Property({ ...req.body, ownerId: req.user.id });
-    await property.save();
-    res.status(201).json(property);
+    const ownerId = req.user ? req.user._id : null; // get from authenticated user
+    if (!ownerId) return res.status(400).json({ message: "Owner ID required" });
+
+    const newProperty = new Property({ ...req.body, ownerId });
+    const saved = await newProperty.save();
+    res.status(201).json(saved);
   } catch (err) {
-    res.status(500).json({ message: "Error creating property", error: err.message });
+    console.error("Create property error:", err);
+    res.status(500).json({ message: err.message });
   }
 };
+
 
 // Get all properties of this owner
 exports.getProperties = async (req, res) => {
