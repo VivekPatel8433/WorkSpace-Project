@@ -9,7 +9,7 @@ const {
 } = require("../controllers/propertycontroller");
 const authMiddleware = require("../middleware/auth");
 
-router.route("/")
+router.route("/") 
   .post(authMiddleware, createProperty)
   .get(authMiddleware, getProperties);
 
