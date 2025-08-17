@@ -8,10 +8,11 @@ const {
   deleteProperty,
 } = require("../controllers/propertyController");
 
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/auth");
 
-router.post("/", authMiddleware(["owner"]), createProperty);
-router.get("/", authMiddleware(["owner"]), getProperties);
+router.route("/") 
+  .post(authMiddleware, createProperty)
+  .get(authMiddleware, getProperties);
 
 router.route("/:id")
   .get(authMiddleware, getProperty)
