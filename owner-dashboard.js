@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const tokenKey = "jwtToken"; // just to make it clear
 async function fetchProperties() {
   try {
-    const token = localStorage.getItem(tokenKey);
+    const token = localStorage.getItem("jwtToken");
     const res = await fetch("https://workspace-project.onrender.com/api/properties", {
       headers: { "Authorization": `Bearer ${token}` },
     });
@@ -130,7 +130,7 @@ async function fetchProperties() {
 
 async function fetchWorkspaces() {
   try {
-    const token = localStorage.getItem(tokenKey);
+    const token = localStorage.getItem("jwtToken");
     const res = await fetch("https://workspace-project.onrender.com/api/workspaces", {
       headers: { "Authorization": `Bearer ${token}` },
     });

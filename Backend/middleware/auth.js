@@ -6,7 +6,8 @@ const authMiddleware = (roles = []) => {
     if (!token) return res.status(401).json({ message: "Unauthorized" });
 
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || "supersecret2025");
+
       req.user = decoded; // { id, role }
 
       // If roles are specified, check access
