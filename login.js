@@ -12,13 +12,13 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
   // Get role from radio buttons
   const roleRadios = document.getElementsByName("role");
-  let selectedRole = null;
-  for (const radio of roleRadios) {
-    if (radio.checked) {
-      selectedRole = radio.id;
-      break;
-    }
+ let selectedRole = null;
+for (const radio of roleRadios) {
+  if (radio.checked) {
+    selectedRole = radio.value;
+    break;
   }
+}
 
   if (!email || !password || !selectedRole) {
     alert("Please enter email, password, and select a role.");
