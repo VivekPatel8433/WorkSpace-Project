@@ -35,16 +35,16 @@ for (const radio of roleRadios) {
     const data = await response.json();
 
     if (response.ok) {
-      if (data.role.toLowerCase() === selectedRole.toLowerCase()) {
+      if (data.role === selectedRole) {
   // Save user info in localStorage
   handleLoginSuccess(
     { email: data.email, firstName: data.firstName, role: data.role },
     data.token
   );
 
-  if (data.role.toLowerCase() === "owner") {
+  if (data.role === "owner") {
     window.location.href = "https://vivekpatel8433.github.io/WorkSpace-Project/owner-dashboard.html";
-  } else if (data.role.toLowerCase() === "co-worker") {
+  } else if (data.role === "co-worker") {
     window.location.href =
       "https://vivekpatel8433.github.io/WorkSpace-Project/coworker-dashboard.html";
   }
