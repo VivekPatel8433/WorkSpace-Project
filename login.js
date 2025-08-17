@@ -48,8 +48,6 @@ for (const radio of roleRadios) {
     window.location.href =
       "https://vivekpatel8433.github.io/WorkSpace-Project/coworker-dashboard.html";
   }
-} else {
-  alert("Role does not match the registered role for this user.");
       }
     } else {
       alert(data.message || "Invalid credentials");
