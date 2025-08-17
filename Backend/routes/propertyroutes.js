@@ -1,22 +1,14 @@
+// routes/propertyroutes.js
 const express = require("express");
 const router = express.Router();
-const {
-  createProperty,
-  getProperties,
-  getProperty,
-  updateProperty,
-  deleteProperty,
-} = require("../controllers/propertyController");
+const authMiddleware = require("../middleware/authMiddleware");
+const { createProperty, getProperties, getProperty, updateProperty, deleteProperty } = require("../controllers/propertyController");
 
-const authMiddleware = require("../middleware/auth");
-
-router.route("/") 
-  .post(authMiddleware, createProperty)
-  .get(authMiddleware, getProperties);
-
-router.route("/:id")
-  .get(authMiddleware, getProperty)
-  .put(authMiddleware, updateProperty)
-  .delete(authMiddleware, deleteProperty);
+// all routes require auth
+router.post("/", authMiddleware(), createProperty);
+router.get("/", authMiddleware(), getProperties);
+router.get("/:id", authMiddleware(), getProperty);
+router.put("/:id", authMiddleware(), updateProperty);
+router.delete("/:id", authMiddleware(), deleteProperty);
 
 module.exports = router;
