@@ -6,7 +6,7 @@ const {
   getProperty,
   updateProperty,
   deleteProperty,
-} = require("../controllers/propertycontroller");
+} = require("./controllers/propertyController");
 const authMiddleware = require("../middleware/auth");
 
 router.route("/") 
