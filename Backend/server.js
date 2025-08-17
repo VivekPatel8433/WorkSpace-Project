@@ -13,11 +13,17 @@ const PORT = process.env.PORT || 3001;
 connectDB();
 
 // Middleware
-app.use(cors({
-  origin: "*", 
-  methods: ["GET", "POST", "PUT", "DELETE"],
+const corsOptions = {
+  origin: "https://vivekpatel8433.github.io",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}));
+};
+
+app.use(cors(corsOptions));
+
+// Preflight handler
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 // Routes
