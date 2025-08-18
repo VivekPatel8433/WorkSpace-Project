@@ -1,7 +1,7 @@
 // routes/propertyroutes.js
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/auth");
 const { createProperty, getProperties, getProperty, updateProperty, deleteProperty } = require("../controllers/propertyController");
 
 // all routes require auth
