@@ -131,15 +131,10 @@ async function fetchProperties() {
   `;
   list.appendChild(div);
 
- const select = document.getElementById("propertySelect");
-
-  data.forEach((prop) => {
-  const opt = document.createElement("option");
-  opt.value = prop._id;      
-  opt.textContent = prop.address;
-  select.appendChild(opt);
-});
-
+      const opt = document.createElement("option");
+      opt.value = prop._id;
+      opt.textContent = prop.address;
+      select.appendChild(opt);
     });
   } catch (err) {
     console.error("Fetch properties error:", err);
@@ -175,7 +170,7 @@ async function fetchWorkspaces() {
   }
 }
 
-// Edit/Delete functions
+// Edit/Delete function
 function editProperty(id) {
   const form = document.getElementById("property-form");
   const token = localStorage.getItem("jwtToken");
