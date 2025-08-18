@@ -135,7 +135,7 @@ async function fetchProperties() {
 
   data.forEach((prop) => {
   const opt = document.createElement("option");
-  opt.value = prop._id;      // MUST be MongoDB _id
+  opt.value = prop._id;      
   opt.textContent = prop.address;
   select.appendChild(opt);
 });
