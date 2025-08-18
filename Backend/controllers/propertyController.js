@@ -1,8 +1,10 @@
 const Property = require("../models/property");
 
-// Create Property
+
 exports.createProperty = async (req, res) => {
   try {
+    if (!req.user || !req.user.id) return res.status(401).json({ message: "Unauthorized" });
+
     const property = new Property({ ...req.body, ownerId: req.user.id });
     await property.save();
     res.status(201).json(property);
@@ -12,7 +14,6 @@ exports.createProperty = async (req, res) => {
   }
 };
 
-// Get all properties of logged-in owner
 exports.getProperties = async (req, res) => {
   try {
     const properties = await Property.find({ ownerId: req.user.id });
