@@ -241,3 +241,8 @@ function deleteWorkspace(id) {
     .then(() => fetchWorkspaces())
     .catch(err => console.error("Delete workspace error:", err));
 }
+
+window.editProperty = editProperty;
+window.deleteProperty = deleteProperty;
+window.editWorkspace = editWorkspace;
+window.deleteWorkspace = deleteWorkspace;
