@@ -118,14 +118,17 @@ async function fetchProperties() {
     list.innerHTML = "<h3>Your Properties:</h3>";
     select.innerHTML = '<option value="">Select a Property</option>';
 
-    data.forEach((prop) => {
-      const div = document.createElement("div");
-      div.innerHTML = `
-        ${prop.address} (${prop.neighborhood})
-        <button onclick="editProperty('${prop._id}')">Edit</button>
-        <button onclick="deleteProperty('${prop._id}')">Delist</button>
-      `;
-      list.appendChild(div);
+   data.forEach((prop) => {
+  const div = document.createElement("div");
+  div.innerHTML = `
+    ${prop.address} (${prop.neighborhood})<br>
+    Sqft: ${prop.sqft} | 
+    Parking: ${prop.parking ? "Yes" : "No"} | 
+    Public Transport Nearby: ${prop.publicTransport ? "Yes" : "No"}<br>
+    <button onclick="editProperty('${prop._id}')">Edit</button>
+    <button onclick="deleteProperty('${prop._id}')">Delist</button>
+  `;
+  list.appendChild(div);
 
       const opt = document.createElement("option");
       opt.value = prop._id;
