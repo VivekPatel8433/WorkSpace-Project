@@ -17,3 +17,4 @@ router.put("/:id", authMiddleware(), updateWorkspace);
 router.delete("/:id", authMiddleware(), deleteWorkspace);
 
 module.exports = router;
+ 

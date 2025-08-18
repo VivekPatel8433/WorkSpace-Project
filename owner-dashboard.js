@@ -114,6 +114,7 @@ async function fetchProperties() {
 
     const data = await res.json();
     const list = document.getElementById("property-list");
+    const select = document.getElementById("propertySelect");
 
     list.innerHTML = "<h3>Your Properties:</h3>";
     select.innerHTML = '<option value="">Select a Property</option>';
@@ -134,7 +135,7 @@ async function fetchProperties() {
 
   data.forEach((prop) => {
   const opt = document.createElement("option");
-  opt.value = prop._id;    
+  opt.value = prop._id;      // MUST be MongoDB _id
   opt.textContent = prop.address;
   select.appendChild(opt);
 });
