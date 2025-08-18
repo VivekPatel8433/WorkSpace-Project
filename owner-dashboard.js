@@ -58,16 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) return alert("You must login first");
 
     const newWS = {
-  propertyId: form.propertySelect.value,
-  workspaceName: form.workspaceName.value,
-  price: Number(form.price.value) || 0,
-  type: form.type.value,
-  capacity: Number(form.capacity.value) || 0,
-  smokingAllowed: form.smokingAllowed.checked,
-  availabilityDate: form.availabilityDate.value,
-  leaseTerm: form.leaseTerm.value,
-};
-
+      propertyId: form.propertySelect.value,
+      workspaceName: workspaceForm.workspaceName.value,
+      price: Number(workspaceForm.price.value) || 0,
+      type: workspaceForm.type.value,
+      capacity: Number(workspaceForm.capacity.value) || 0,
+      smokingAllowed: workspaceForm.smokingAllowed.checked,
+      availabilityDate: workspaceForm.availabilityDate.value,
+      leaseTerm: workspaceForm.leaseTerm.value,
+    };
 
     const isEditing = workspaceForm.dataset.editingId;
     const url = isEditing
