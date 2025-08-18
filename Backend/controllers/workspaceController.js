@@ -1,52 +1,62 @@
-const Property = require("../models/property");
+const Workspace = require("../models/workspace");
 
-// Create Property
-exports.createProperty = async (req, res) => {
+// Create a new workspace
+exports.createWorkspace = async (req, res) => {
   try {
-    const property = new Property({ ...req.body, ownerId: req.user.id });
-    await property.save();
-    res.status(201).json(property);
+    if (!req.user || !req.user.id) return res.status(401).json({ message: "Unauthorized" });
+
+    const workspace = new Workspace({ ...req.body, ownerId: req.user.id });
+    await workspace.save();
+    res.status(201).json(workspace);
   } catch (err) {
-    res.status(500).json({ message: "Error creating property", error: err.message });
+    console.error("Workspace save error:", err);
+    res.status(500).json({ message: "Error creating workspace", error: err.message });
   }
 };
 
-// Get all properties of this owner
-exports.getProperties = async (req, res) => {
+// Get all workspaces of the logged-in user
+exports.getWorkspaces = async (req, res) => {
   try {
-    const properties = await Property.find({ ownerId: req.user.id });
-    res.json(properties);
+    const workspaces = await Workspace.find({ ownerId: req.user.id });
+    res.json(workspaces);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching properties", error: err.message });
+    console.error("Fetch workspaces error:", err);
+    res.status(500).json({ message: "Error fetching workspaces", error: err.message });
   }
 };
 
-// Get single property
-exports.getProperty = async (req, res) => {
+// Get single workspace by ID
+exports.getWorkspace = async (req, res) => {
   try {
-    const property = await Property.findById(req.params.id);
-    res.json(property);
+    const workspace = await Workspace.findById(req.params.id);
+    if (!workspace) return res.status(404).json({ message: "Workspace not found" });
+    res.json(workspace);
   } catch (err) {
-    res.status(500).json({ message: "Error fetching property", error: err.message });
+    console.error("Fetch workspace error:", err);
+    res.status(500).json({ message: "Error fetching workspace", error: err.message });
   }
 };
 
-// Update property
-exports.updateProperty = async (req, res) => {
+// Update workspace by ID
+exports.updateWorkspace = async (req, res) => {
   try {
-    const property = await Property.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(property);
+    const workspace = await Workspace.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!workspace) return res.status(404).json({ message: "Workspace not found" });
+    res.json(workspace);
   } catch (err) {
-    res.status(500).json({ message: "Error updating property", error: err.message });
+    console.error("Update workspace error:", err);
+    res.status(500).json({ message: "Error updating workspace", error: err.message });
   }
 };
 
-// Delete property
-exports.deleteProperty = async (req, res) => {
+// Delete workspace by ID
+exports.deleteWorkspace = async (req, res) => {
   try {
-    await Property.findByIdAndDelete(req.params.id);
-    res.json({ message: "Property deleted" });
+    const workspace = await Workspace.findByIdAndDelete(req.params.id);
+    if (!workspace) return res.status(404).json({ message: "Workspace not found" });
+    res.json({ message: "Workspace deleted" });
   } catch (err) {
-    res.status(500).json({ message: "Error deleting property", error: err.message });
+    console.error("Delete workspace error:", err);
+    res.status(500).json({ message: "Error deleting workspace", error: err.message });
   }
 };

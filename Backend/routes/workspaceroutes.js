@@ -1,17 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const propertyController = require("../controllers/propertyController");
 const authMiddleware = require("../middleware/auth");
+const {
+  createWorkspace,
+  getWorkspaces,
+  getWorkspace,
+  updateWorkspace,
+  deleteWorkspace,
+} = require("../controllers/workspaceController");
 
-// Create & Get all properties
-router.route("/")
-  .post(authMiddleware, propertyController.createProperty)
-  .get(authMiddleware, propertyController.getProperties);
-
-// Get, update, delete single property
-router.route("/:id")
-  .get(authMiddleware, propertyController.getProperty)
-  .put(authMiddleware, propertyController.updateProperty)
-  .delete(authMiddleware, propertyController.deleteProperty);
+// All routes require authentication
+router.post("/", authMiddleware(), createWorkspace);
+router.get("/", authMiddleware(), getWorkspaces);
+router.get("/:id", authMiddleware(), getWorkspace);
+router.put("/:id", authMiddleware(), updateWorkspace);
+router.delete("/:id", authMiddleware(), deleteWorkspace);
 
 module.exports = router;

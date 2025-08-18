@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const propertyForm = document.getElementById("property-form");
   const workspaceForm = document.getElementById("workspace-form");
 
-  // ---------------- Property Form ----------------
+// Property
   propertyForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("jwtToken");
@@ -50,22 +50,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ---------------- Workspace Form ----------------
+  // Workspace
+
   workspaceForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("jwtToken");
     if (!token) return alert("You must login first");
 
     const newWS = {
-      propertyId: workspaceForm.propertySelect.value,
-      workspaceName: workspaceForm.workspaceName.value,
-      price: Number(workspaceForm.price.value) || 0,
-      type: workspaceForm.type.value,
-      capacity: Number(workspaceForm.capacity.value) || 0,
-      smokingAllowed: workspaceForm.smokingAllowed.checked,
-      availabilityDate: workspaceForm.availabilityDate.value,
-      leaseTerm: workspaceForm.leaseTerm.value,
-    };
+  propertyId: form.propertySelect.value,
+  workspaceName: form.workspaceName.value,
+  price: Number(form.price.value) || 0,
+  type: form.type.value,
+  capacity: Number(form.capacity.value) || 0,
+  smokingAllowed: form.smokingAllowed.checked,
+  availabilityDate: form.availabilityDate.value,
+  leaseTerm: form.leaseTerm.value,
+};
+
 
     const isEditing = workspaceForm.dataset.editingId;
     const url = isEditing
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ---------------- Fetch Functions ----------------
+// fetch
 async function fetchProperties() {
   const token = localStorage.getItem("jwtToken");
   if (!token) return;
@@ -113,7 +115,6 @@ async function fetchProperties() {
 
     const data = await res.json();
     const list = document.getElementById("property-list");
-    const select = document.getElementById("propertySelect");
 
     list.innerHTML = "<h3>Your Properties:</h3>";
     select.innerHTML = '<option value="">Select a Property</option>';
@@ -130,10 +131,15 @@ async function fetchProperties() {
   `;
   list.appendChild(div);
 
-      const opt = document.createElement("option");
-      opt.value = prop._id;
-      opt.textContent = prop.address;
-      select.appendChild(opt);
+ const select = document.getElementById("propertySelect");
+
+  data.forEach((prop) => {
+  const opt = document.createElement("option");
+  opt.value = prop._id;     
+  opt.textContent = prop.address;
+  select.appendChild(opt);
+});
+
     });
   } catch (err) {
     console.error("Fetch properties error:", err);
@@ -169,7 +175,7 @@ async function fetchWorkspaces() {
   }
 }
 
-// ---------------- Edit / Delete Functions ----------------
+// Edit/Delete functions
 function editProperty(id) {
   const form = document.getElementById("property-form");
   const token = localStorage.getItem("jwtToken");

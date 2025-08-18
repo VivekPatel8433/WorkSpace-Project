@@ -9,6 +9,7 @@ const workspaceSchema = new mongoose.Schema({
   smokingAllowed: { type: Boolean, default: false },
   availabilityDate: { type: Date },
   leaseTerm: { type: String },
+  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true });
 
 const Workspace = mongoose.models.Workspace || mongoose.model("Workspace", workspaceSchema);
