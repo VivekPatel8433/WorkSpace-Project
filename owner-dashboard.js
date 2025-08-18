@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!token) return alert("You must login first");
 
     const newWS = {
-      propertyId: form.propertySelect.value,
+      propertyId: workspaceForm.propertySelect.value,
       workspaceName: workspaceForm.workspaceName.value,
       price: Number(workspaceForm.price.value) || 0,
       type: workspaceForm.type.value,
@@ -134,7 +134,7 @@ async function fetchProperties() {
 
   data.forEach((prop) => {
   const opt = document.createElement("option");
-  opt.value = prop._id;     
+  opt.value = prop._id;    
   opt.textContent = prop.address;
   select.appendChild(opt);
 });
