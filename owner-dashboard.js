@@ -6,13 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("property-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
-    const token = localStorage.getItem("jwtToken"); // fixed
+    const token = localStorage.getItem("jwtToken"); 
     if (!token) return alert("You must login first");
 
     const newProperty = {
       address: form.address.value,
       neighborhood: form.neighborhood.value,
-      sqft: +form.sqft.value,
+      sqft: form.sqft.value ? Number(form.sqft.value) : 0,
       parking: form.parking.checked,
       publicTransport: form.publicTransport.checked,
     };
@@ -33,7 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(newProperty),
       });
 
-      if (!res.ok) throw new Error(`Server error: ${res.statusText}`);
+      console.log("Response status:", res.status);
+      const data = await res.json().catch(() => null);
+       console.log("Response body:", data);
+
+      if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Server error: ${res.status} - ${errorText}`);
+}
+
 
       form.reset();
       delete form.dataset.editingId;
@@ -92,8 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Fetch functions and edit/delete functions also use:
-const tokenKey = "jwtToken"; // just to make it clear
+// Fetch functions and edit/delete functions
+const tokenKey = "jwtToken";
 async function fetchProperties() {
   try {
     const token = localStorage.getItem("jwtToken");

@@ -46,7 +46,7 @@ exports.register = async (req, res) => {
 // login route 
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body;   
 
   try {
     const user = await User.findOne({ email });

@@ -31,9 +31,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/api/workspaces", workspaceRoutes);
 
-// Default route for sanity check
 app.get("/", (req, res) => {
-  res.send("Backend is running ✅");
+  res.send("Backend is running");
 });
 
 // Error handling middleware
@@ -42,7 +41,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: "Internal server error", error: err.message });
 });
 
-// Start server (only once)
+// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
