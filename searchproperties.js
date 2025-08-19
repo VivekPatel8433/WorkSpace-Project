@@ -751,7 +751,7 @@ function bookWorkspace(id) {
     return;
   }
 
-  fetch("https://workspace-project.onrender.com/api/book", {
+  fetch("https://workspace-project.onrender.com/api/bookings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
