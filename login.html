@@ -5,19 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
     <link rel="stylesheet" href="login.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-[#ECFEE8]">
     <!--Headers-->
-    <div id="loginPageeader"></div>
+       <!-- Header -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold text-[#C97C5D] hover:text-red-500">WorkSpace</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Features & Benefits</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">How It Works</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Book A Space</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href= "login.html"><button id="signInButton" class="text-gray-800 hover:text-[#FF8E72] transition-colors">Sign In</button></a>
+                    <a href="registration.html"><button id="getStartedButton" class="bg-[#05F140] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Register
+                    </button></a>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <!-- Login Container-->
-    <div class="login-container min-h-screen bg-gray">
-      <h2>Login</h2>
-      <form>
-        <label for="email"><strong>Email Address</strong></label>
-        <input type="email" name="email" id="email" />
+    <div>
+      <form class="border border-gray-700 rounded-lg shadow-md p-10">
+        <h2 class="text-2xl flex justify-center items-center">Login</h2>
+        <label for="email" class="rounded-lg"><strong>Email Address</strong></label>
+        <input type="email" class="email" id="email"/>
 
-        <label for="password"><strong>Password</strong></label>
+        <label for="password" class="rounded-lg"><strong>Password</strong></label>
         <input type="password" name="password" id="password" />
 
         <!-- Form Options -->
@@ -26,22 +47,26 @@
             <input type="checkbox" name="checkbox" id="checkbox" />
             Remember Me
           </label>
-          <!-- Need a link here -->
-          <a href="#"><strong>Forgot Password?</strong></a>
         </div>
-
+         <a href="#" class="text-md"><strong>Forgot Password?</strong></a>
         <br />
-
         <div class="role-select">
           <label>Role:</label>
         <input type="radio" name="role" id="owner" value="owner" required /> Owner
-      <input type="radio" name="role" id="co-worker" value="co-worker" /> Co-worker
+        <input type="radio" name="role" id="co-worker" value="co-worker" /> Co-worker
         </div>
 
         <br />
+        <div id=".social-btn">
+         
+
+        </div>
 
         <!-- Login Button -->
-        <button type="submit" class="login-btn"><strong>Login</strong></button>
+         <div class="login-btn rounded-lg">
+           <button type="submit" class="login-btn"><strong>Login</strong></button>
+         </div>
+       
 
 
         <!-- Signup -->
@@ -54,7 +79,11 @@
     </div>
 
     <!--Footers-->
-    <div id="footer"></div>
+   <footer id="footers" class="fixed bottom-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg">
+    <div class="w-full fixed ml-8">
+      <a href="index.html"><h2 class="text-lg flex justify-center items-center mt-5 hover:text-blue-800">Perfect WorkSpace Do Exist</h2></a>
+    </div>
+   </footer>
 
     <script src="./login.js"></script>
   </body>

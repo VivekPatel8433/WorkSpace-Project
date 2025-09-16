@@ -36,12 +36,15 @@
     <main class="dashboard-content">
 
       <!-- Property Form -->
+       <div class="flex"> 
       <section id="property-form-section">
-        <h2>Add Property</h2>
+        <div class="flex">
+
+           <h2>Add Property</h2>
         <form id="property-form" enctype="multipart/form-data">
-          <input name="address" placeholder="Address" required />
-          <input name="neighborhood" placeholder="Neighborhood" required />
-          <input name="sqft" type="number" placeholder="Sqft" required />
+          <input name="address" placeholder="Address" required /> <br> <br>
+          <input name="neighborhood" placeholder="Neighborhood" required /> <br> <br>
+          <input name="sqft" type="number" placeholder="Sqft" required /> <br> <br>
           <label><input type="checkbox"  id="parking" name="parking" /> Parking</label>
           <label><input type="checkbox" id="publicTransport" name="publicTransport" /> Near Public Transport</label>
           <br> <br>
@@ -49,28 +52,30 @@
           <input type="file" name="photos" multiple accept="image/*" />
           <br><br>
           <button type="submit">Add Property</button>
-          <br>
+          <br> <br>
         </form>
         <div id="property-list"></div>
+         </div>
       </section>
 
       <!-- Workspace Form -->
       <section id="workspace-section">
-        <h2>Workspaces</h2>
+        <div class="">
+          <h2>Workspaces</h2>
         <form id="workspace-form">
           <select id="propertySelect" name="propertySelect" required></select>
-          <input name="workspaceName" placeholder="Workspace Name" required />
-          <input name="price" type="number" placeholder="Price" required />
-          <select name="type" required>
-            <option value="desk">Desk</option>
-            <option value="room">Room</option>
-            <option value="meeting">Meeting Room</option>
+          <input name="workspaceName" placeholder="Workspace Name" required /> <br> <br>
+          <input name="price" type="number" placeholder="Price" required /> <br> <br>
+          <select name="type" required> <br> <br>
+            <option value="desk">Desk</option> <br> <br>
+            <option value="room">Room</option> <br> <br>
+            <option value="meeting">Meeting Room</option> <br> <br>
           </select>
-          <input name="capacity" type="number" placeholder="Capacity" required />
+          <input name="capacity" type="number" placeholder="Capacity" required /> <br> <br>
           <label>
-      <input type="checkbox" name="smokingAllowed" />
+      <input type="checkbox" name="smokingAllowed" /> 
       Smoking Allowed
-     </label>
+     </label> <br>
      <label>
       <br>
       Availability Date:
@@ -92,7 +97,10 @@
           <button type="submit">Add Workspace</button>
         </form>
         <div id="workspace-list"></div>
+        </div>
+        
       </section>
+      </div>
     </main>
   </div>
 

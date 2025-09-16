@@ -36,7 +36,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: #d6d4d4;
+  background-color: #CBD4C2;
 }
 
 /* Form Options */
@@ -69,15 +69,14 @@ body {
 /* Login Button */
 .login-btn {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.5rem;
   border: none;
-  background: #d6d4d4;
-  border-radius: 4px;
+  background: #98B9F2;
   cursor: pointer;
 }
 
 .login-btn:hover {
-  background: #7c7f83;
+  background: #82a2cb;
 }
 
 /* Other Login Options */
