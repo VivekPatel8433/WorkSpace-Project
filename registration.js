@@ -1,6 +1,7 @@
 document.querySelector("form").addEventListener("submit", async function (e) {
   e.preventDefault();
 
+  let alertMessage = document.getElementById("alert");
   // Get form values
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -12,12 +13,12 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
   // Basic validation
   if (!email || !password || !role) {
-    alert("Please fill out all required fields.");
+    alertMessage = ("Please fill out all required fields.");
     return;
   }
 
   if (password !== confirmPassword) {
-    alert("Passwords do not match.");
+    alertMessage = ("Passwords do not match.");
     return;
   }
 
