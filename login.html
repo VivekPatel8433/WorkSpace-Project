@@ -6,6 +6,7 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="login.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#ECFEE8]">
     <!--Headers-->
@@ -17,13 +18,13 @@
                     <span class="text-3xl font-bold text-[#C97C5D] hover:text-red-500">WorkSpace</span>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Features & Benefits</a>
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">How It Works</a>
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Book A Space</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">Features & Benefits</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">How It Works</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">Book A Space</a>
                 </nav>
                 <div class="flex items-center space-x-4">
-                    <a href= "login.html"><button id="signInButton" class="text-gray-800 hover:text-[#FF8E72] transition-colors">Sign In</button></a>
-                    <a href="registration.html"><button id="getStartedButton" class="bg-[#05F140] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <a href= "login.html"><button id="signInButton" class="text-gray-800  text-lmd hover:text-[#FF8E72] transition-colors">Sign In</button></a>
+                    <a href="registration.html"><button id="getStartedButton" class=" text-md bg-[#05F140] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                         Register
                     </button></a>
                 </div>
@@ -33,7 +34,7 @@
 
     <!-- Login Container-->
     <div>
-      <form class="border border-gray-700 rounded-lg shadow-md p-10">
+      <form class="border border-gray-700 rounded-lg shadow-md p-2 px-8">
         <h2 class="text-2xl flex justify-center items-center">Login</h2>
         <label for="email" class="rounded-lg"><strong>Email Address</strong></label>
         <input type="email" class="email" id="email"/>
@@ -57,10 +58,27 @@
         </div>
 
         <br />
-        <div id=".social-btn">
-         
+      <div class="space-y-3 mt-6">
+  <!-- Google Login -->
+  <button class="w-full flex items-center justify-center gap-2 border rounded-lg py-2 hover:bg-gray-100 transition">
+    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" class="w-5 h-5" />
+    <span>Login with Google</span>
+  </button>
 
-        </div>
+  <!-- Facebook Login -->
+  <button class="w-full flex items-center justify-center gap-2 border rounded-lg py-2 hover:bg-gray-100 transition">
+    <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="Facebook" class="w-5 h-5" />
+    <span>Login with Facebook</span>
+  </button>
+
+  <!-- GitHub Login -->
+  <button class="w-full flex items-center justify-center gap-2 border rounded-lg py-2 hover:bg-gray-100 transition">
+    <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="w-5 h-5" />
+    <span>Login with GitHub</span>
+  </button>
+   <br>
+</div>
+
 
         <!-- Login Button -->
          <div class="login-btn rounded-lg">

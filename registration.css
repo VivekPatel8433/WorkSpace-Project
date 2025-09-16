@@ -63,7 +63,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  background-color: #d6d4d4;
+  background-color: #b1a6a6;
 }
 
 /* Form Options (Terms) */
@@ -91,7 +91,7 @@ body {
   margin: 0 auto;
   padding: 0.75rem;
   border: none;
-  background: #d6d4d4;
+ background: #98B9F2;
   border-radius: 4px;
   cursor: pointer;
 }

@@ -126,15 +126,6 @@ body {
   cursor: pointer;
 }
 
-.social-btn img {
-  width: 24px;
-  height: 24px;
-}
-
-.social-btn:hover {
-  background-color: #d6d4d4;
-}
-
 /* Signup Link */
 .signup {
   text-align: center;

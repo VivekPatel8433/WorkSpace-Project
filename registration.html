@@ -7,11 +7,34 @@
     <link rel="stylesheet" href="./registration.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-[#ECFEE8]">
+        <!--Headers-->
+       <!-- Header -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-3xl font-bold text-[#C97C5D] hover:text-red-500">WorkSpace</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">Features & Benefits</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">How It Works</a>
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors text-lg">Book A Space</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href= "login.html"><button id="signInButton" class="text-gray-800  text-lmd hover:text-[#FF8E72] transition-colors">Sign In</button></a>
+                    <a href="registration.html"><button id="getStartedButton" class=" text-md bg-[#05F140] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        Register
+                    </button></a>
+                </div>
+            </div>
+        </div>
+    </header>
     <div class="register-container min-h-screen flex justify-center items-center">
-      <h2>Create an Account</h2>
+     
 
-      <form>
+      <form class="border border-gray-700 rounded-lg shadow-md p-2 px-8">
+         <h2>Create an Account</h2>
         <div id="header"></div>
         <!-- Role-->
         <div class="role-select">
@@ -81,6 +104,12 @@
         </p>
       </form>
     </div>
+      <!--Footers-->
+   <footer id="footers" class="fixed bottom-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg">
+    <div class="w-full fixed ml-8">
+      <a href="index.html"><h2 class="text-lg flex justify-center items-center mt-5 hover:text-blue-800">Perfect WorkSpace Do Exist</h2></a>
+    </div>
+   </footer>
     <script src="./registration.js"></script>
   </body>
 </html>
