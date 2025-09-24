@@ -43,4 +43,3 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     alert("Server error. Please try again later.");E
   }
 });
-

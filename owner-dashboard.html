@@ -3,13 +3,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Owner-Dashboard</title>
-  <link rel="stylesheet" href="owner-dashboard.css" />
+  <script src="https://cdn.tailwindcss.com" ></script>
+  <link rel="stylesheet" href="owner-dashboard.css"/>
 </head>
-<body>
-
+<body class="bg-[#FFC145]">
   <!-- Top Header -->
-  <header class="top-bar">
-    <div class="logo-brand">
+  <header class="top-bar text-lg fixed top-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg">
+    <div class="logo-brand text-3xl">
       <h1 class="brand-name">WorkSpace</h1>
     </div>
     <nav class="top-nav">
@@ -33,15 +33,15 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="dashboard-content">
+    <main class="dashboard-content bg-[#CACAAA]">
 
       <!-- Property Form -->
-       <div class="flex"> 
+       <div class="p-6 items-center flex"> 
       <section id="property-form-section">
         <div class="flex">
 
-           <h2>Add Property</h2>
         <form id="property-form" enctype="multipart/form-data">
+          <h2 class="items-center">Add Property</h2>
           <input name="address" placeholder="Address" required /> <br> <br>
           <input name="neighborhood" placeholder="Neighborhood" required /> <br> <br>
           <input name="sqft" type="number" placeholder="Sqft" required /> <br> <br>
@@ -51,7 +51,7 @@
           <label>Upload Photos:</label>
           <input type="file" name="photos" multiple accept="image/*" />
           <br><br>
-          <button type="submit">Add Property</button>
+          <button type="submit" class="bg-[#E4F0D0] p-3 rounded-lg">Add Property</button>
           <br> <br>
         </form>
         <div id="property-list"></div>
@@ -59,10 +59,11 @@
       </section>
 
       <!-- Workspace Form -->
-      <section id="workspace-section">
+      <section id="workspace-section" class="flex">
+
         <div class="">
-          <h2>Workspaces</h2>
-        <form id="workspace-form">
+        <form id="workspace-form" >
+           <h2>Workspaces</h2>
           <select id="propertySelect" name="propertySelect" required></select>
           <input name="workspaceName" placeholder="Workspace Name" required /> <br> <br>
           <input name="price" type="number" placeholder="Price" required /> <br> <br>
@@ -94,7 +95,7 @@
     <label>Upload Photos:</label>
           <input type="file" name="photos" multiple accept="image/*" />
           <br><br>
-          <button type="submit">Add Workspace</button>
+          <button type="submit" class="bg-[#E4F0D0] p-3 rounded-lg">Add Workspace</button>
         </form>
         <div id="workspace-list"></div>
         </div>
@@ -103,8 +104,13 @@
       </div>
     </main>
   </div>
+     <footer id="footers" class="fixed bottom-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg">
+    <div class="w-full fixed ml-8">
+      <a href="index.html"><h2 class="text-lg flex justify-center items-center mt-5 hover:text-blue-800">Perfect WorkSpace Do Exist</h2></a>
+    </div>
+   </footer>
 
   <!-- JavaScript File -->
-  <script defer src="owner-dashboard.js"></script>
+  <script src="owner-dashboard.js" defer></script>
 </body>
 </html>

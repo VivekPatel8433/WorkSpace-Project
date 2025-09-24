@@ -1,4 +1,4 @@
-/* Reset and global styles */
+Reset and global styles
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,16 +6,8 @@
   font-family: Arial, sans-serif;
 }
 
-body {
-  background-color: #f5f5f5;
-  color: #333;
-  font-smooth: always;
-  -webkit-font-smoothing: antialiased;
-}
-
 /* Header */
 .top-bar {
-  background-color: #ccc;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,6 +36,7 @@ body {
 .top-nav {
   display: flex;
   gap: 20px;
+  font-size: x-large;
 }
 
 .top-nav a {
@@ -54,8 +47,8 @@ body {
   transition: color 0.2s ease-in-out;
 }
 
-.top-nav a:hover {
-  color: #3388ff;
+.top-nav a a:hover {
+  color: #3068b7;
 }
 
 /* Actions */
@@ -67,7 +60,6 @@ body {
 
 .logout-btn {
   padding: 6px 12px;
-  background-color: white;
   border: 1px solid #000;
   cursor: pointer;
   font-weight: bold;
@@ -100,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   border-right: 1px solid #ddd;
+  margin-top: 1px;
 }
 
 .sidebar button {
@@ -119,20 +112,16 @@ body {
 
 .sidebar button:focus {
   outline: 2px solid #3388ff;
-  background-color: #e6f0ff;
 }
 
 .sidebar .active {
   border: 2px solid #3388ff;
-  background-color: white;
 }
 
 /* Main Dashboard Content */
 .dashboard-content {
   flex: 1;
-  padding: 30px;
-  background-color: #fff;
-  overflow-y: auto;
+
 }
 
 .dashboard-content h2 {
