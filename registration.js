@@ -13,12 +13,13 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
   // Basic validation
   if (!email || !password || !role) {
-    alertMessage = ("Please fill out all required fields.");
+    alertMessage.textContent = "Please fill out all required fields.";
+    alertMessage.style.color = "red";
     return;
   }
 
   if (password !== confirmPassword) {
-    alertMessage = ("Passwords do not match.");
+    alertMessage.textContent = "Passwords do not match.";
     return;
   }
 
@@ -39,7 +40,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
       alert(data.message || "Registration failed");
     }
   } catch (error) {
-    alert("Server error. Please try again later.");
+    alert("Server error. Please try again later.");E
   }
 });
 
