@@ -6,9 +6,9 @@
   <script src="https://cdn.tailwindcss.com" ></script>
   <link rel="stylesheet" href="owner-dashboard.css"/>
 </head>
-<body class="bg-[#FFC145]">
+<body>
   <!-- Top Header -->
-  <header class="top-bar text-lg fixed top-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg">
+  <header class="top-bar text-lg fixed top-0 left-0 w-full h-16 bg-[#E29578] shadow-md rounded-lg z-50">
     <div class="logo-brand text-3xl">
       <h1 class="brand-name">WorkSpace</h1>
     </div>
@@ -26,7 +26,7 @@
   <div class="dashboard-layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <button class="active">Properties</button>
+      <button class="active">Properties & WorkSpace</button>
       <button>Booking Request</button>
       <button>Reviews & Rating</button>
       <button>Account Settings</button>
@@ -36,9 +36,9 @@
     <main class="dashboard-content bg-[#CACAAA]">
 
       <!-- Property Form -->
-       <div class="p-6 items-center flex"> 
+      <div class="flex flex-col lg:flex-row gap-6 p-6 mt-20">
       <section id="property-form-section">
-        <div class="flex">
+        <div class="flex 1 ">
 
         <form id="property-form" enctype="multipart/form-data">
           <h2 class="items-center">Add Property</h2>
@@ -63,7 +63,7 @@
 
         <div class="">
         <form id="workspace-form" >
-           <h2>Workspaces</h2>
+           <h2>Add Workspaces</h2>
           <select id="propertySelect" name="propertySelect" required></select>
           <input name="workspaceName" placeholder="Workspace Name" required /> <br> <br>
           <input name="price" type="number" placeholder="Price" required /> <br> <br>
