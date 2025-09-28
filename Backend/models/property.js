@@ -6,7 +6,11 @@ const propertySchema = new mongoose.Schema({
   sqft: { type: Number, required: true },
   parking: { type: Boolean, default: false },
   publicTransport: { type: Boolean, default: false },
-  ownerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  ownerId: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "User", 
+    required: true 
+  }, // Relationship 
 }, { timestamps: true });
 
 const Property = mongoose.models.Property || mongoose.model("Property", propertySchema);

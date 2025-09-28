@@ -21,7 +21,7 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(express.json());
+app.use(express.json()); // Parse JSON bodies 
 
 // Routes
 app.use("/api/auth", authRoutes);
