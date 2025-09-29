@@ -19,6 +19,7 @@ exports.getWorkspaces = async (req, res) => {
   try {
     const workspaces = await Workspace.find({ ownerId: req.user.id });
     res.json(workspaces);
+    
   } catch (err) {
     console.error("Fetch workspaces error:", err);
     res.status(500).json({ message: "Error fetching workspaces", error: err.message });

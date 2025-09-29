@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const workspaceSchema = new mongoose.Schema({
-  propertyId: { type: mongoose.Schema.Types.ObjectId, ref: "Property", required: true },
+  propertyId: { type: mongoose.Schema.Types.ObjectId, ref: "Property", required: true }, // Relationship
   workspaceName: { type: String, required: true },
   price: { type: Number, required: true },
   type: { type: String, required: true },
