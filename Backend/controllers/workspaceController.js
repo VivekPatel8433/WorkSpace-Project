@@ -67,7 +67,7 @@ exports.getAllWorkspaces = async (req, res) => {
   try {
     const workspace = await Workspace.find();
     if(!workspace) return res.status(404).json({message: "Workspace not found"});
-    res.json({message: "Not found"});
+    res.json(workspace);
   } catch (err) {
     console.error("GetAllWorkspace error", err); 
     res.status(500).json({messsage: "Server error", eror: err.message});

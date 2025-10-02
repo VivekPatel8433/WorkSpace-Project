@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middleware/auth");
+const authMiddleware = require("./middleware/auth");
 const {
   createWorkspace,
   getWorkspaces,
@@ -8,15 +8,15 @@ const {
   updateWorkspace,
   deleteWorkspace,
   getAllWorkspaces
-} = require("../controllers/workspaceController");
+} = require("./controllers/workspaceController");
 
 // All routes require authentication
 router.post("/", authMiddleware(), createWorkspace);
 router.get("/", authMiddleware(), getWorkspaces);
 router.get("/:id", authMiddleware(), getWorkspace);
 router.put("/:id", authMiddleware(), updateWorkspace);
-router.delete("/:id", authMiddleware(), deleteWorkspace);
-router.get("/all", authMiddleware,getAllWorkspaces);
+router.delete("/:id", authMiddleware(), deleteWorkspace); // public route
+router.get("/all", getAllWorkspaces);
 
 module.exports = router;
  
