@@ -26,6 +26,18 @@ exports.getWorkspaces = async (req, res) => {
   }
 };
 
+// All the workspaces available
+exports.getAllWorkspaces = async (req, res) => {
+  try {
+    const workspace = await Workspace.find();
+    if(!workspace) return res.status(404).json({message: "Workspace not found"});
+    res.json(workspace);
+  } catch (error) {
+    console.error("GetAllWorkspace error", error); 
+    res.status(500).json({messsage: "Server error", error: error.message});
+  }
+}
+
 // Get single workspace by ID
 exports.getWorkspace = async (req, res) => {
   try {
@@ -62,14 +74,4 @@ exports.deleteWorkspace = async (req, res) => {
   }
 };
 
-// All the workspaces available
-exports.getAllWorkspaces = async (req, res) => {
-  try {
-    const workspace = await Workspace.find();
-    if(!workspace) return res.status(404).json({message: "Workspace not found"});
-    res.json(workspace);
-  } catch (error) {
-    console.error("GetAllWorkspace error", error); 
-    res.status(500).json({messsage: "Server error", error: error.message});
-  }
-}
+
