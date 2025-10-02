@@ -61,3 +61,15 @@ exports.deleteWorkspace = async (req, res) => {
     res.status(500).json({ message: "Error deleting workspace", error: err.message });
   }
 };
+
+// All the workspaces available
+exports.getAllWorkspaces = async (req, res) => {
+  try {
+    const workspace = await Workspace.find();
+    if(!workspace) return res.status(404).json({message: "Workspace not found"});
+    res.json({message: "Not found"});
+  } catch (err) {
+    console.error("GetAllWorkspace error", err); 
+    res.status(500).json({messsage: "Server error", eror: err.message});
+  }
+}
