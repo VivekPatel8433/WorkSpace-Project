@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // Fetch properties from backend
-    const res = await fetch("http://localhost:5000/api/workspaces", { // replace URL with your backend
+    const res = await fetch("https://workspace-project.onrender.com/api/workspaces", { // replace URL with your backend
       headers: {
         Authorization: `Bearer ${loggedInUser.token}`,
       },
