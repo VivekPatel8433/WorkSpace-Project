@@ -1,51 +1,59 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const resultsContainer = document.getElementById("results");
+
+  // Get logged-in user from localStorage (assuming you store token there)
   const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
   if (!loggedInUser || !loggedInUser.token) {
-    document.getElementById("results").innerText = "You must be logged in.";
+    resultsContainer.innerHTML = "<p class='text-red-500'>You must be logged in to see your properties.</p>";
     return;
   }
 
   try {
-    const res = await fetch("https://workspace-project.onrender.com/api/workspaces", {
+    // Fetch properties from backend
+    const res = await fetch("http://localhost:5000/api/workspaces", { // replace URL with your backend
       headers: {
         Authorization: `Bearer ${loggedInUser.token}`,
       },
     });
+
     if (!res.ok) throw new Error("Failed to fetch workspaces");
+
     const workspaces = await res.json();
-    renderResults(workspaces);
+    renderWorkspaces(workspaces);
   } catch (err) {
     console.error(err);
-    document.getElementById("results").innerText = "Error loading properties.";
+    resultsContainer.innerHTML = "<p class='text-red-500'>Error loading properties.</p>";
   }
 });
 
-function renderResults(workspaces) {
+// Function to render workspace cards
+function renderWorkspaces(workspaces) {
   const container = document.getElementById("results");
   container.innerHTML = "";
 
   if (!workspaces.length) {
-    container.innerText = "No properties found.";
+    container.innerHTML = "<p class='text-gray-500'>No properties found.</p>";
     return;
   }
 
   workspaces.forEach(ws => {
-    const div = document.createElement("div");
-    div.className = "border p-4 mb-4 rounded";
+    const card = document.createElement("div");
+    card.className = "bg-white rounded-lg shadow-md p-4 mb-6";
 
-    div.innerHTML = `
-      <h3 class="text-xl font-bold">${ws.name}</h3>
-      <p><strong>Type:</strong> ${ws.type}</p>
-      <p><strong>Location:</strong> ${ws.location}</p>
-      <p><strong>Price per day:</strong> $${ws.pricePerDay}</p>
-      <p><strong>Capacity:</strong> ${ws.capacity} people</p>
-      <p><strong>Description:</strong> ${ws.description}</p>
+    card.innerHTML = `
+      <h3 class="text-xl font-bold mb-2">${ws.name}</h3>
+      <p class="text-gray-700 mb-1"><strong>Type:</strong> ${ws.type}</p>
+      <p class="text-gray-700 mb-1"><strong>Location:</strong> ${ws.location}</p>
+      <p class="text-gray-700 mb-1"><strong>Price per day:</strong> $${ws.pricePerDay}</p>
+      <p class="text-gray-700 mb-1"><strong>Capacity:</strong> ${ws.capacity} people</p>
+      <p class="text-gray-700"><strong>Description:</strong> ${ws.description}</p>
     `;
 
-    container.appendChild(div);
+    container.appendChild(card);
   });
 }
+
 
 
 // // ------------------ Workspace Data ------------------
