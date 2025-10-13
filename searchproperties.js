@@ -32,10 +32,19 @@ function renderWorkspaces(workspaces) {
       <p class="text-gray-700 mb-1"><strong>Name:</strong> ${ws.workspaceName}</p>
       <p class="text-gray-700 mb-1"><strong>Type:</strong> ${ws.type}</p>
       <p class="text-gray-700 mb-1"><strong>Capacity:</strong> ${ws.capacity}</p>
-      <p class="text-gray-700 mb-1"><strong>Availability:</strong> ${ws.availabilityDate}</p>
+      <p<p class="text-gray-700 mb-1"><strong>Availability:</strong> ${new Date(ws.availabilityTerm).toISOString().split('T')[0]}</p>
       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.leaseTerm}</p>
-       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.price}</p>
+      <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.price}</p>
     `;
+
+    <button className="book-btn bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-200"
+        data-id="${ws._id}">
+        Book Workspace
+    </button>
     container.appendChild(card);
+
+    document.querySelectorAll(".book-btn").forEach(btn => {
+    btn.addEventListener("click", handleBooking);
+  });
   });
 }
