@@ -29,11 +29,12 @@ function renderWorkspaces(workspaces) {
     card.className = "bg-white rounded-lg shadow-md p-4 mb-6";
 
     card.innerHTML = `
-      <p class="text-gray-700 mb-1"><strong>Name:</strong> ${ws.name}</p>
+      <p class="text-gray-700 mb-1"><strong>Name:</strong> ${ws.workspaceName}</p>
       <p class="text-gray-700 mb-1"><strong>Type:</strong> ${ws.type}</p>
       <p class="text-gray-700 mb-1"><strong>Capacity:</strong> ${ws.capacity}</p>
-      <p class="text-gray-700 mb-1"><strong>Availability:</strong> ${ws.availabilityTerm}</p>
+      <p class="text-gray-700 mb-1"><strong>Availability:</strong> ${ws.availabilityDate}</p>
       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.leaseTerm}</p>
+       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.price}</p>
     `;
     container.appendChild(card);
   });
