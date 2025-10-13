@@ -28,11 +28,20 @@ function renderWorkspaces(workspaces) {
     const card = document.createElement("div");
     card.className = "bg-white rounded-lg shadow-md p-4 mb-6";
 
+     // ✅ Safe date formatting
+    let formattedDate = "Not specified";
+    if (ws.availabilityTerm) {
+      const dateObj = new Date(ws.availabilityTerm);
+      if (!isNaN(dateObj)) {
+        formattedDate = dateObj.toISOString().split('T')[0];
+      }
+    }
+
     card.innerHTML = `
       <p class="text-gray-700 mb-1"><strong>Name:</strong> ${ws.workspaceName}</p>
       <p class="text-gray-700 mb-1"><strong>Type:</strong> ${ws.type}</p>
       <p class="text-gray-700 mb-1"><strong>Capacity:</strong> ${ws.capacity}</p>
-      <p<p class="text-gray-700 mb-1"><strong>Availability:</strong> ${new Date(ws.availabilityTerm).toISOString().split('T')[0]}</p>
+      <p<p class="text-gray-700 mb-1"><strong>Availability:</strong> ${formattedDate}</p>
       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.leaseTerm}</p>
       <p class="text-gray-700 mb-1"><strong>Lease Term:</strong> ${ws.price}</p>
 
