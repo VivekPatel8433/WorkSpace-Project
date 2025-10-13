@@ -4,7 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const propertyRoutes = require("./routes/propertyroutes");
-const workspaceRoutes = require("./workspaceroutes");
+const workspaceRoutes = require("./routes/workspaceroutes");
 const bookings = require("./routes/bookings");
 
 const app = express();

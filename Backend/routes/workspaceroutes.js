@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("./middleware/auth");
+const authMiddleware = require("../middleware/auth");
 const {
   createWorkspace,
   getWorkspaces,
@@ -8,7 +8,7 @@ const {
   getWorkspace,
   updateWorkspace,
   deleteWorkspace,
-} = require("./controllers/workspaceController");
+} = require("../controllers/workspaceController");
 
 // All routes require authentication
 router.post("/", authMiddleware(), createWorkspace);
